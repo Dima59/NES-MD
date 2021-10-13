@@ -1,0 +1,799 @@
+﻿<!-- Home Page -->
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<!-- Page Header -->
+<div class="d-flex border-bottom mb-3">
+    <!-- Sidebar Toggle (Topbar) -->
+    <button class="btn btn-link d-md-none icn-color tooltips mr-3 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+
+    <!-- Title -->
+    <h2 class="text-header mr-auto mt-2 mb-1">Dashboard</h2>
+
+    <!-- Dropdown Menu - Jump to...-->
+    <div class="dropdown no-arrow mt-2 mr-3">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="mdi mdi-menu mdi-24px text-black-50"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header">Jump to snippet:</div>
+            <a class="dropdown-item" href="#jumbotron">Jumbotron</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#cardsOne">Cards Example One</a>
+            <a class="dropdown-item" href="#cardsTwo">Cards Example Two</a>
+            <a class="dropdown-item" href="#cardsThree">Cards Example Three</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#buttons">Circle Buttons</a>
+            <a class="dropdown-item" href="#buttons">Split Buttons with Icon</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#tabs">Tabs</a>
+            <a class="dropdown-item" href="#tabs">Accordion</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#blockquote">Blockquote</a>
+            <a class="dropdown-item" href="#blockquote">Scrollbar</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#features">Features</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#timeline">Timeline</a>
+        </div>
+    </div>
+
+    <!-- Welcome -->
+    <h6 class="page-header text-right text-black-50 mt-3">Welcome, @Session["userName"]!</h6>
+</div>
+<!-- End of Page Header -->
+<!-- Page Body -->
+<!-- Bootstrap Responsive with row & col -->
+<!-- Jumbotron -->
+@*<div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="jumbotron jumbotron-fluid mb-4">
+                <div class="container">
+                    <h1 class="display-4">News</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="jumbotron jumbotron-fluid mb-4">
+                <div class="container">
+                    <h1 class="display-4">Fluid jumbotron</h1>
+                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<!-- Cards Example One -->
+@*<div class="row mb-2">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card">
+                <div class="card-body bg-info">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-warning btn-dark">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-lg-0 mt-md-0 mt-sm-4">
+            <div class="card">
+                <div class="card-body bg-lightblue text-white">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-secondary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-lg-0 mt-md-4 mt-sm-4 mb-3">
+            <div class="card">
+                <div class="card-body bg-warning">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-success">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<!-- Bootstrap Responsive with flex -->
+<!-- Jumbotron Example -->
+<div class="d-lg-flex flex-lg-row" id="jumbotron">
+    <div class="jumbotron jumbotron-fluid text-center text-white shadow bg-lightblue w-100 mb-4 px-3 py-5">
+        <!-- Title -->
+        <h2 class="display-4">Bootstrap Material Design Jumbotron</h2>
+        <!-- Subtitle -->
+        <p class="h4 my-4">Powerful and free Material Design UI KIT</p>
+        <!-- Jumbotron text -->
+        <div class="mx-5">
+            <p class="card-text lead justify-content-center mx-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga aliquid dolorem ea distinctio exercitationem delectus qui, quas eum architecto, amet quasi accusantium, fugit consequatur ducimus obcaecati numquam molestias hic itaque accusantium doloremque laudantium, totam rem aperiam.</p>
+            <!-- Buttons -->
+            <hr class="bg-white my-3">
+        </div>
+        <button type="button" class="btn btn-outline-secondary border shadow mt-2 mr-2">Buy now <i class="mdi mdi-cart"></i></button>
+        <button type="button" class="btn btn-outline-secondary border shadow mt-2">Download <i class="mdi mdi-download"></i></button>
+    </div>
+</div>
+
+<!-- Cards Example One -->
+<div class="d-lg-flex flex-lg-row" id="cardsOne">
+    <div class="w-100 mr-3 mb-4">
+        <div class="card">
+            <div class="card-body bg-info">
+                <h5 class="card-title">Cards Example One</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                @*<a href="#" class="btn btn-dark mr-2">Go somewhere</a>
+                    <a href="#" class="btn btn-dark btn-icon-split btn-sm mr-2">
+                        <span class="icon text-white">
+                            <i class="mdi mdi-arrow-right-thick mdi-18px"></i>
+                        </span>
+                        <span class="text">Go somewhere</span>
+                    </a>*@
+                <button class="btn btn-dark btn-circle btn-circle-sm tooltips float-right" title="Go somewhere"><i class="mdi mdi-arrow-right-thick"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="w-100 mr-3 mb-4">
+        <div class="card">
+            <div class="card-body bg-password-image text-white">
+                <h5 class="card-title">Cards Example Two</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                @*<a href="#" class="btn btn-secondary mr-2">Go somewhere</a>*@
+                <button href="#" class="btn btn-secondary btn-icon-split mr-2 p-0">
+                    <span class="icon text-black-50">
+                        <i class="mdi mdi-arrow-right-thick mdi-18px"></i>
+                    </span>
+                    <span class="text">More info</span>
+                </button>
+                @*<button class="btn btn-secondary btn-circle btn-circle-sm tooltips float-right" title ="Go somewhere"><i class="mdi mdi-arrow-right-thick"></i></button>*@
+            </div>
+        </div>
+    </div>
+    <div class="w-100 mb-4">
+        <div class="card">
+            <div class="card-body bg-warning">
+                <h5 class="card-title">Cards Example Three</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <button href="#" class="btn btn-success mr-2">Go somewhere</button>
+                @*<a href="#" class="btn btn-success btn-icon-split btn-sm mr-2">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-arrow-right-thick mdi-18px"></i>
+                        </span>
+                        <span class="text">Go somewhere</span>
+                    </a>
+                    <button class="btn btn-success btn-circle btn-circle-sm tooltips float-right" title ="Go somewhere"><i class="mdi mdi-arrow-right-thick"></i></button>*@
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cards Example Two -->
+<!-- Rows & Columns -->
+<div class="row" id="cardsTwo">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-top border-right border-bottom border-left-primary mb-4">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
+                        <div class="h5 font-weight-bold text-gray-800 mb-0"><i class="mdi mdi-currency-eur"></i>40,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="mdi mdi-calendar-month-outline mdi-48px text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Earnings (Annual) Card Example -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-top border-right border-bottom border-left-success mb-4">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
+                        <div class="h5 font-weight-bold text-gray-800 mb-0"><i class="mdi mdi-currency-eur"></i>215,000</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="mdi mdi-cash-multiple mdi-48px text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tasks Card Example -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-top border-right border-bottom border-left-info mb-4">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                        <div class="row no-gutters align-items-center">
+                            <div class="col-auto">
+                                <div class="h5 font-weight-bold text-gray-800 mb-0 mr-3">50%</div>
+                            </div>
+                            <div class="col">
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="mdi mdi-clipboard-list mdi-48px text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card border-top border-right border-bottom border-left-warning mb-4">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
+                        <div class="h5 font-weight-bold text-gray-800 mb-0">18</div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="mdi mdi-message-text-clock-outline mdi-48px text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cards Example Three -->
+<div class="row" id="cardsThree">
+    <div class="col-lg-6">
+        <!-- Default Card Example -->
+        <div class="card border mb-4">
+            <div class="card-header border-bottom">
+                Default Card Example
+            </div>
+            <div class="card-body">
+                This card uses Bootstrap's default styling with no utility classes added. Global styles are the only things modifying the look and feel of this default card example.
+            </div>
+        </div>
+        <!-- Basic Card Example -->
+        <div class="card border mb-4">
+            <div class="card-header py-3">
+                <h6 class="font-weight-bold text-primary m-0 ">Basic Card Example</h6>
+            </div>
+            <div class="card-body">
+                The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <!-- Dropdown Card Example -->
+        <div class="card border mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header d-flex flex-row align-items-center justify-content-between py-3">
+                <h6 class="font-weight-bold text-primary m-0">Dropdown Card Example</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="mdi mdi-menu mdi-18px text-gray-900"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                Dropdown menus can be placed in the card header in order to extend the functionality of a basic card. In this dropdown card example, the Font Awesome vertical ellipsis icon in the card header can be clicked on in order to toggle a dropdown menu.
+            </div>
+        </div>
+        <!-- Collapsable Card Example -->
+        <div class="card border mb-4">
+            <!-- Card Header - Accordion -->
+            <a href="#collapseCardExample" class="card-header d-block py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="font-weight-bold text-primary m-0 ">Collapsable Card Example</h6>
+            </a>
+            <!-- Card Content - Collapse -->
+            <div class="collapse show" id="collapseCardExample">
+                <div class="card-body">
+                    This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rounded Buttons Example -->
+<div class="row" id="buttons">
+    <div class="col-lg-6">
+        <!-- Circle Buttons -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="font-weight-bold text-primary m-0">Circle Buttons</h6>
+            </div>
+            <div class="card-body">
+                <p>
+                    Use Material Design Icons classes along with the circle buttons <code>.btn-circle</code> clas as shown in the examples below! You should use a text helper classes to set icon color, font-weight... as shown.
+
+                    <h4 class="mb-2">Small circle buttons</h4>
+                    <!-- sm circle button-->
+                    <button class="btn btn-success btn-circle btn-circle-sm mr-1"><i class="mdi mdi-check-bold"></i></button>
+                    <button class="btn btn-primary btn-circle btn-circle-sm m-1"><i class="mdi mdi-cog"></i></button>
+                    <button class="btn btn-info btn-circle btn-circle-sm m-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                    <button class="btn btn-warning btn-circle btn-circle-sm m-1"><i class="mdi mdi-tag-multiple"></i></button>
+                    <button class="btn btn-danger btn-circle btn-circle-sm m-1"><i class="mdi mdi-file-word"></i></button>
+                    <button class="btn btn-dark btn-circle btn-circle-sm m-1"><i class="mdi mdi-magnify"></i></button>
+                    <button class="btn btn-secondary btn-circle btn-circle-sm m-1"><i class="mdi mdi-wrench"></i></button>
+                    <button class="btn btn-light btn-circle btn-circle-sm text-info font-weight-bold m-1"><i class="mdi mdi-information-variant"></i></button>
+
+                    <h4 class="mt-4 mb-2">Regular circle buttons</h4>
+                    <!-- regular circle buttons-->
+                    <button class="btn btn-success btn-circle mr-1"><i class="mdi mdi-check-bold"></i></button>
+                    <button class="btn btn-primary btn-circle m-1"><i class="mdi mdi-cog"></i></button>
+                    <button class="btn btn-info btn-circle m-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                    <button class="btn btn-warning btn-circle m-1"><i class="mdi mdi-tag-multiple"></i></button>
+                    <button class="btn btn-danger btn-circle m-1"><i class="mdi mdi-file-word"></i></button>
+                    <button class="btn btn-dark btn-circle m-1"><i class="mdi mdi-magnify"></i></button>
+                    <button class="btn btn-secondary btn-circle m-1"><i class="mdi mdi-wrench"></i></button>
+                    <button class="btn btn-light btn-circle text-danger m-1"><i class="mdi mdi-exclamation-thick"></i></button>
+
+                    <h4 class="mt-4 mb-2">Large circle buttons</h4>
+                    <!-- lg circle buttons-->
+                    <button class="btn btn-success btn-circle btn-circle-lg mr-1"><i class="mdi mdi-check-bold"></i></button>
+                    <button class="btn btn-primary btn-circle btn-circle-lg m-1"><i class="mdi mdi-cog"></i></button>
+                    <button class="btn btn-info btn-circle btn-circle-lg m-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                    <button class="btn btn-warning btn-circle btn-circle-lg m-1"><i class="mdi mdi-tag-multiple"></i></button>
+                    <button class="btn btn-danger btn-circle btn-circle-lg m-1"><i class="mdi mdi-file-word"></i></button>
+                    <button class="btn btn-dark btn-circle btn-circle-lg m-1"><i class="mdi mdi-magnify"></i></button>
+                    <button class="btn btn-secondary btn-circle btn-circle-lg m-1"><i class="mdi mdi-wrench"></i></button>
+                    <button class="btn btn-light btn-circle btn-circle-lg text-warning m-1"><i class="mdi mdi-alert"></i></button>
+
+                    <h4 class="mt-4 mb-2">XL circle buttons</h4>
+                    <!-- xl circle buttons-->
+                    <button class="btn btn-success btn-circle btn-circle-xl mr-1"><i class="mdi mdi-check-bold"></i></button>
+                    <button class="btn btn-primary btn-circle btn-circle-xl m-1"><i class="mdi mdi-cog"></i></button>
+                    <button class="btn btn-info btn-circle btn-circle-xl m-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                    <button class="btn btn-warning btn-circle btn-circle-xl m-1"><i class="mdi mdi-tag-multiple"></i></button>
+                    <button class="btn btn-danger btn-circle btn-circle-xl m-1"><i class="mdi mdi-file-word"></i></button>
+                    <button class="btn btn-dark btn-circle btn-circle-xl m-1"><i class="mdi mdi-magnify"></i></button>
+                    <button class="btn btn-secondary btn-circle btn-circle-xl m-1"><i class="mdi mdi-wrench"></i></button>
+                    <button class="btn btn-light btn-circle btn-circle-xl text-primary m-1"><i class="mdi mdi-chart-bar"></i></button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <!-- Split Buttons -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Split Buttons with Icon</h6>
+            </div>
+            <div class="card-body">
+                <p>
+                    Works with any button colors, just use the <code>.btn-icon-split</code> class and the markup in the examples below. The examples below also use the <code>.text-white-50</code> and <code>.text-black-50</code> helper class on the icons for additional styling, but it is not required.<br />
+
+                    <button class="btn btn-primary btn-icon-split my-2 p-0" onclick="location.href = '';">
+                        <i class="mdi mdi-flag icon text-white-50"></i>
+                        <span class="text">Split Button Primary</span>
+                        @*<span class="icon text-white-50">
+                                <i class="mdi mdi-flag mdi-24px"></i>
+                            </span>
+                            <span class="text">Split Button Primary</span>*@
+                    </button><br />
+                    <button class="btn btn-success btn-icon-split mb-2 p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-check-bold"></i>
+                        </span>
+                        <span class="text">Split Button Success</span>
+                    </button><br />
+                    <button class="btn btn-info btn-icon-split mb-2 p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-information"></i>
+                        </span>
+                        <span class="text">Split Button Info</span>
+                    </button><br />
+                    <button class="btn btn-warning btn-icon-split mb-2 p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-alert"></i>
+                        </span>
+                        <span class="text">Split Button Warning</span>
+                    </button><br />
+                    <button class="btn btn-danger btn-icon-split mb-2 p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-delete"></i>
+                        </span>
+                        <span class="text">Split Button Danger</span>
+                    </button><br />
+                    <button class="btn btn-secondary btn-icon-split mb-2 p-0">
+                        <span class="icon text-white">
+                            <i class="mdi mdi-arrow-right-thick"></i>
+                        </span>
+                        <span class="text">Split Button Secondary</span>
+                    </button><br />
+                    <button class="btn btn-light btn-icon-split p-0">
+                        <span class="icon text-black-50">
+                            <i class="mdi mdi-arrow-right-thick"></i>
+                        </span>
+                        <span class="text">Split Button Light</span>
+                    </button><br />
+                </p>
+                <p>
+                    Also works with small and large button classes!<br />
+
+                    <a href="#" class="btn btn-primary btn-icon-split btn-sm mt-2 p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-flag"></i>
+                        </span>
+                        <span class="text">Split Button Small</span>
+                    </a>
+                    <div class="my-2"></div>
+                    <a href="#" class="btn btn-primary btn-icon-split btn-lg p-0">
+                        <span class="icon text-white-50">
+                            <i class="mdi mdi-flag"></i>
+                        </span>
+                        <span class="text">Split Button Large</span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabs & Accordion -->
+<div class="row" id="tabs">
+    <div class="col-lg-6">
+        <!-- Tabs Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h5 class="text-primary m-0">Tabs</h5>
+            </div>
+            <div class="card-body">
+                <!-- Lined tabs-->
+                <ul class="nav nav-tabs nav-pills with-arrow lined flex-column flex-sm-row text-center" id="myTab2" role="tablist">
+                    <li class="nav-item flex-sm-fill">
+                        <a class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0 active" id="home2-tab" data-toggle="tab" href="#home2" role="tab" aria-controls="home2" aria-selected="true">Home</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill">
+                        <a class="nav-link text-uppercase font-weight-bold mr-sm-3 rounded-0" id="profile2-tab" data-toggle="tab" href="#profile2" role="tab" aria-controls="profile2" aria-selected="false">Profile</a>
+                    </li>
+                    <li class="nav-item flex-sm-fill">
+                        <a class="nav-link text-uppercase font-weight-bold rounded-0" id="contact2-tab" data-toggle="tab" href="#contact2" role="tab" aria-controls="contact2" aria-selected="false">Contact</a>
+                    </li>
+                </ul>
+                <div id="myTab2Content" class="tab-content">
+                    <div class="tab-pane fade px-4 py-5 show active" id="home2" role="tabpanel" aria-labelledby="home-tab">
+                        <p class="leade font-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p class="leade font-italic mb-0">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade px-4 py-5" id="profile2" role="tabpanel" aria-labelledby="profile-tab">
+                        <p class="leade font-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p class="leade font-italic mb-0">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                    <div class="tab-pane fade px-4 py-5" id="contact2" role="tabpanel" aria-labelledby="contact-tab">
+                        <p class="leade font-italic">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                        <p class="leade font-italic mb-0">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+                <!-- End lined tabs -->
+            </div>
+        </div>
+    </div>
+    <!-- Accordion example -->
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h5 class="text-primary m-0">Accordion</h5>
+            </div>
+            <div class="card-body">
+                <!-- Accordion -->
+                <div id="accordionExample" class="accordion border">
+                    <!-- Accordion item 1 -->
+                    <div class="card">
+                        <div class="card-header bg-white shadow-sm" id="headingOne">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link text-dark font-weight-bold text-uppercase collapsible-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Small circle buttons
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse show" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body p-5">
+                                <!-- SM circle buttons -->
+                                <button class="btn btn-success btn-circle btn-circle-sm mr-1"><i class="mdi mdi-check-bold"></i></button>
+                                <button class="btn btn-primary btn-circle btn-circle-sm mr-1"><i class="mdi mdi-cog"></i></button>
+                                <button class="btn btn-info btn-circle btn-circle-sm mr-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                                <button class="btn btn-warning btn-circle btn-circle-sm mr-1"><i class="mdi mdi-tag-multiple"></i></button>
+                                <button class="btn btn-danger btn-circle btn-circle-sm mr-1"><i class="mdi mdi-file-word"></i></button>
+                                <button class="btn btn-dark btn-circle btn-circle-sm mr-1"><i class="mdi mdi-magnify"></i></button>
+                                <button class="btn btn-secondary btn-circle btn-circle-sm mr-1"><i class="mdi mdi-wrench"></i></button>
+                                <button class="btn btn-light btn-circle btn-circle-sm text-info font-weight-bold mr-1"><i class="mdi mdi-information-variant"></i></button>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+                    <!-- Accordion item 2 -->
+                    <div class="card">
+                        <div class="card-header bg-white border-top shadow-sm" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Regular circle buttons
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body p-5">
+                                <!-- Regular circle buttons -->
+                                <button class="btn btn-success btn-circle mr-1"><i class="mdi mdi-check-bold"></i></button>
+                                <button class="btn btn-primary btn-circle mr-1"><i class="mdi mdi-cog"></i></button>
+                                <button class="btn btn-info btn-circle mr-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                                <button class="btn btn-warning btn-circle mr-1"><i class="mdi mdi-tag-multiple"></i></button>
+                                <button class="btn btn-danger btn-circle mr-1"><i class="mdi mdi-file-word"></i></button>
+                                <button class="btn btn-dark btn-circle mr-1"><i class="mdi mdi-magnify"></i></button>
+                                <button class="btn btn-secondary btn-circle mr-1"><i class="mdi mdi-wrench"></i></button>
+                                <button class="btn btn-light btn-circle text-info font-weight-bold mr-1"><i class="mdi mdi-information-variant"></i></button>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+                    <!-- Accordion item 3 -->
+                    <div class="card">
+                        <div class="card-header bg-white border-top shadow-sm" id="headingThree">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Large circle buttons
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body p-5">
+                                <!-- Large circle buttons -->
+                                <button class="btn btn-success btn-circle btn-circle-lg mr-1"><i class="mdi mdi-check-bold"></i></button>
+                                <button class="btn btn-primary btn-circle btn-circle-lg mr-1"><i class="mdi mdi-cog"></i></button>
+                                <button class="btn btn-info btn-circle btn-circle-lg mr-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                                <button class="btn btn-warning btn-circle btn-circle-lg mr-1"><i class="mdi mdi-tag-multiple"></i></button>
+                                <button class="btn btn-danger btn-circle btn-circle-lg mr-1"><i class="mdi mdi-file-word"></i></button>
+                                <button class="btn btn-dark btn-circle btn-circle-lg mr-1"><i class="mdi mdi-magnify"></i></button>
+                                <button class="btn btn-secondary btn-circle btn-circle-lg mr-1"><i class="mdi mdi-wrench"></i></button>
+                                <button class="btn btn-light btn-circle btn-circle-lg text-info font-weight-bold mr-1"><i class="mdi mdi-information-variant"></i></button>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+                    <!-- Accordion item 4 -->
+                    <div class="card">
+                        <div class="card-header bg-white border-top shadow-sm" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button type="button" class="btn btn-link collapsed text-dark font-weight-bold text-uppercase collapsible-link" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+                                    XL circle buttons
+                                </button>
+                            </h2>
+                        </div>
+                        <div class="collapse" id="collapseFour" aria-labelledby="headingFour" data-parent="#accordionExample">
+                            <div class="card-body p-5">
+                                <!-- XL circle buttons -->
+                                <button class="btn btn-success btn-circle btn-circle-xl mr-1"><i class="mdi mdi-check-bold"></i></button>
+                                <button class="btn btn-primary btn-circle btn-circle-xl mr-1"><i class="mdi mdi-cog"></i></button>
+                                <button class="btn btn-info btn-circle btn-circle-xl mr-1 pr-1"><i class="mdi mdi-telegram"></i></button>
+                                <button class="btn btn-warning btn-circle btn-circle-xl mr-1"><i class="mdi mdi-tag-multiple"></i></button>
+                                <button class="btn btn-danger btn-circle btn-circle-xl mr-1"><i class="mdi mdi-file-word"></i></button>
+                                <button class="btn btn-dark btn-circle btn-circle-xl mr-1"><i class="mdi mdi-magnify"></i></button>
+                                <button class="btn btn-secondary btn-circle btn-circle-lg mr-1"><i class="mdi mdi-wrench"></i></button>
+                                <button class="btn btn-light btn-circle btn-circle-xl text-info font-weight-bold mr-1"><i class="mdi mdi-information-variant"></i></button>
+                            </div>
+                        </div>
+                    </div><!-- End -->
+                </div><!-- End -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blockquote & Gradient Scrollbar -->
+<div class="row" id="blockquote">
+    <!-- BlockQuote -->
+    <div class="col-lg-6">
+        <div class="card mb-4">
+            <div class="card-header py-3">
+                <h5 class="text-primary m-0">Blockquote</h5>
+            </div>
+            <div class="card-body px-5 mt-3">
+                <!-- Custom Blocquote -->
+                <blockquote class="blockquote blockquote-custom bg-white shadow border mt-2 p-4">
+                    <div class="blockquote-custom-icon bg-info"><i class="mdi mdi-format-quote-open mdi-36px text-white"></i></div>
+                    <p class="font-italic mb-0 mt-2">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo <a href="#" class="text-info">bbxx</a>."</p>
+                    <footer class="blockquote-footer border-top pt-4 mt-4">
+                        Someone famous in
+                        <cite title="Source Title">Source Title</cite>
+                    </footer>
+                </blockquote><!-- END -->
+            </div>
+        </div>
+    </div>
+    <!-- Gradient Scrollbar -->
+    <!-- Not supported in Firefox or IE/Edge -->
+    <!-- Supported in Chrome/Edge Chromium -->
+    <div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h5 class="text-primary m-0">Scrollbar</h5>
+            </div>
+            <div class="card-body p-5">
+                <div class="custom-scrollbar-css p-2">
+                    <p class="font-italic">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, soluta, cupiditate. Ad ab, delectus impedit similique voluptate fuga nemo iure, nobis dolorem dolor, quia voluptas aperiam doloremque commodi id? In? Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Features -->
+<div class="row" id="features">
+    <div class="col-lg-12">
+        <div class="card features-clean shadow mb-4 py-2">
+            <div class="container">
+                <div class="intro">
+                    <h2 class="text-center">Features</h2>
+                    <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
+                </div>
+                <div class="row features">
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi mdi-map-marker icon"></i>
+                        <h3 class="name">Works everywhere</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi mdi-clock-time-nine icon"></i>
+                        <h3 class="name">Always available</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi mdi-view-sequential-outline icon"></i>
+                        <h3 class="name">Customizable</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi mdi-leaf icon"></i>
+                        <h3 class="name">Organic</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi mdi-clock-fast icon"></i>
+                        <h3 class="name">Fast</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 item">
+                        <i class="mdi-cellphone-android mdi icon"></i>
+                        <h3 class="name">Mobile-first</h3>
+                        <p class="description">Aenean tortor est, vulputate quis leo in, vehicula rhoncus lacus. Praesent aliquam in tellus eu gravida. Aliquam varius finibus est.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Timeline -->
+<div class="row" id="timeline">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4 py-2">
+            <div class="container">
+                <h2 class="pb-3 pt-2 border-bottom mb-5">Vertical Left-Right Timeline</h2>
+                <!--first section-->
+                <div class="row align-items-center how-it-works d-flex">
+                    <div class="col-2 text-center bottom d-inline-flex justify-content-center align-items-center">
+                        <div class="circle rounded font-weight-bold">1</div>
+                    </div>
+                    <div class="col-6">
+                        <h5>Fully Responsive</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor gravida aliquam. Morbi orci urna, iaculis in ligula et, posuere interdum lectus.</p>
+                    </div>
+                </div>
+                <!--path between 1-2-->
+                <div class="row timeline">
+                    <div class="col-2">
+                        <div class="corner top-right"></div>
+                    </div>
+                    <div class="col-8">
+                        <hr />
+                    </div>
+                    <div class="col-2">
+                        <div class="corner left-bottom"></div>
+                    </div>
+                </div>
+                <!--second section-->
+                <div class="row align-items-center justify-content-end how-it-works d-flex">
+                    <div class="col-6 text-right">
+                        <h5>Using Bootstrap</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor gravida aliquam. Morbi orci urna, iaculis in ligula et, posuere interdum lectus.</p>
+                    </div>
+                    <div class="col-2 text-center full d-inline-flex justify-content-center align-items-center">
+                        <div class="circle font-weight-bold">2</div>
+                    </div>
+                </div>
+                <!--path between 2-3-->
+                <div class="row timeline">
+                    <div class="col-2">
+                        <div class="corner right-bottom"></div>
+                    </div>
+                    <div class="col-8">
+                        <hr />
+                    </div>
+                    <div class="col-2">
+                        <div class="corner top-left"></div>
+                    </div>
+                </div>
+                <!--third section-->
+                <div class="row align-items-center how-it-works d-flex">
+                    <div class="col-2 text-center top d-inline-flex justify-content-center align-items-center">
+                        <div class="circle font-weight-bold">3</div>
+                    </div>
+                    <div class="col-6">
+                        <h5>Now with Pug and Sass</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor gravida aliquam. Morbi orci urna, iaculis in ligula et, posuere interdum lectus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- One column row -->
+<!--<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4 py-2">
+        </div>
+    </div>
+</div>-->
+<!-- Two columns row -->
+<!--<div class="row">-->
+<!--  -->
+<!--<div class="col-lg-6">
+</div>-->
+<!--  -->
+<!--<div class="col-lg-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary"></h6>
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- End of Main Content -->
+<!-- /.container-fluid -->
+
+<!-- Display Admin Sidebar menu & Floating Side Menu links if user is 'Admin' -->
+@if (@Session["userName"]?.ToString() == "Admin")
+{
+    <script type="text/javascript">
+        // Admin Sidebar menu
+        document.getElementById('editUsersHeading').className = "sidebar-heading mt-1";
+        document.getElementById('editUsers').className = "nav-link";
+        // Floating Side Menu
+        document.getElementById('editUsersFloatingMenu').className = "ripple tooltips-left";
+        document.getElementById('editRolesFloatingMenu').className = "ripple tooltips-left";
+    </script>
+}

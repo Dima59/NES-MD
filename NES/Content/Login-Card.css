@@ -1,0 +1,50 @@
+﻿/* Login - page background */
+body {
+    background-color: #122836;
+    /*background-color: antiquewhite;*/
+    /*background-color: #1C4558;*/
+    /*background-color: #008080;*/
+    /*background-color: wheat;*/
+    /*background-color: #185A64;*/
+    /*background-color: #607D8B;*/
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAAA1JREFUCNdjmMAAAhMABIgBIbS25/QAAAAASUVORK5CYII=);
+    opacity: .9;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';
+    filter: alpha(opacity=75);*/
+}
+
+/* Title */
+.login-title {
+    color: #C47A4D;
+    font-weight: normal;
+}
+/* Form Control - height */
+.form-control {
+    height: calc(1.5em + 1.0rem);
+}
+
+/* Card-Horizontal - Width */
+.card-width-horizontal {
+    width: 450px;
+}
+
+/* Card-Vertical - Width */
+.card-width-vertical {
+    width: 350px;
+}
+
+/* Change field shadow on error */
+textarea.input-validation-error,
+textarea.form-control.input-validation-error,
+input.form-control.input-validation-error,
+input[type="text"].input-validation-error,
+input[type="password"].input-validation-error,
+input[type="email"].input-validation-error,
+input[type="number"].input-validation-error,
+[type="text"].form-control.input-validation-error,
+[type="password"].form-control.input-validation-error,
+[type="email"].form-control.input-validation-error,
+[type="tel"].form-control.input-validation-error,
+[contenteditable].form-control.input-validation-error {
+    box-shadow: inset 0 -2px 0 #f44336;
+}

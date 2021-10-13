@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title - NES</title>
+
+    <!-- Check if user is logged in, if not go to Login page -->
+    @{
+        if (Session["userID"] == null)
+        {
+            Response.Redirect(@Url.Action("Index", "Login"));
+        }
+    }
+</head>
+<body id="page-top">
+    @Styles.Render("~/Content/css")
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Floating Side Menu -->
+        <nav class="floating-menu">
+            <ul class="main-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home")" class="ripple tooltips-left" title="Dashboard">
+                        <i class="mdi mdi-home-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "User")" @*class="ripple tooltips-left"*@ class="d-none" id="editUsersFloatingMenu" title="Users">
+                        <i class="mdi mdi-account-edit-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Roles")" class="d-none" id="editRolesFloatingMenu" title="Roles">
+                        <i class="mdi mdi-badge-account-horizontal-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("LogOut", "Login")" class="ripple tooltips-left" title="Logout">
+                        <i class="mdi mdi-logout-variant mdi-18px p-1"></i>
+                    </a>
+                </li>
+                @*<li>
+                        <a href="#" class="ripple tooltips-left" title="Settings">
+                            <i class="mdi mdi-cogs mdi-18px p-1"></i>
+                        </a>
+                    </li>*@
+            </ul>
+
+            <div class="menu-bg"></div>
+        </nav>
+        <!-- End of Floating Side Menu -->
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-darkblue sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <li class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon tooltips" title="Prognosis 2020">
+                    <i class="mdi mdi-chart-bubble"></i>
+                </div>
+                <div class="sidebar-brand-text text-nowrap"> Prognosis 2020</div>
+            </li>
+            <!-- Divider -->
+            <li><hr class="sidebar-divider"></li>
+            <!-- Heading - Admin -->
+            <li class="d-none" id="editUsersHeading">
+                Admin
+            </li>
+            <!-- Menu Links for Admin -->
+            <!-- Nav Item - User Add/Edit/Delete -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "User" )" class="d-none" id="editUsers">
+                    <i class="mdi mdi-account-edit-outline mdi-18px"></i>
+                    <span>Users - Add/Edit/Delete</span>
+                </a>
+            </li>
+            <!-- Heading - Applications - User -->
+            <li class="sidebar-heading">
+                Applications
+            </li>
+            <!-- Nav Item - Dnevnik -->
+            <li class="nav-item">
+                <a href="http://appnsz/Dnevnik/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-notebook-outline mdi-18px"></i>
+                    <span>Dnevnik</span>
+                </a>
+            </li>
+            <!-- Nav Item - IRIS -->
+            <li class="nav-item">
+                <a href="http://appnsz/IRIS/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-eye-outline mdi-18px"></i>
+                    <span>IRIS</span>
+                </a>
+            </li>
+            <!-- Nav Item - Jablan -->
+            <li class="nav-item">
+                <a href="http://appnsz/Jablan/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-pine-tree mdi-18px"></i>
+                    <span>Jablan</span>
+                </a>
+            </li>
+            <!-- Nav Item - Keops -->
+            <li class="nav-item">
+                <a href="http://appnsz/Keops/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-triangle mdi-18px"></i>
+                    <span>Keops</span>
+                </a>
+            </li>
+            <!-- Nav Item - NN Obračun -->
+            <li class="nav-item">
+                <a href="http://appnsz/NNObracun/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-account-cash-outline mdi-18px"></i>
+                    <span>NN Obračun</span>
+                </a>
+            </li>
+            <!-- Nav Item - NSZ Stat -->
+            <li class="nav-item">
+                <a href="http://appnsz/NSZStat/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-chart-pie mdi-18px"></i>
+                    <span>NSZ Stat</span>
+                </a>
+            </li>
+            <!-- Nav Item - Oglasi -->
+            <li class="nav-item">
+                <a href="http://appnsz/Oglasi/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-newspaper-variant-outline mdi-18px"></i>
+                    <span>Oglasi</span>
+                </a>
+            </li>
+            <!-- Nav Item - PNN -->
+            <li class="nav-item">
+                <a href="http://appnsz/PNN/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-cash-multiple mdi-18px"></i>
+                    <span>PNN</span>
+                </a>
+            </li>
+            <!-- Nav Item - Prognoze 2019 -->
+            <li class="nav-item">
+                <a href="http://appnsz/Prognoze2019/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-chart-line mdi-18px"></i>
+                    <span>Prognoze 2019</span>
+                </a>
+            </li>
+            <!-- Nav Item - Alea -->
+            <li class="nav-item">
+                <a href="http://appnsz/Alea/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-paperclip mdi-18px"></i>
+                    <span>Alea</span>
+                </a>
+            </li>
+            <!-- Nav Item - CIPS -->
+            <li class="nav-item">
+                <a href="http://appnsz/Zanimanja/" target="_blank" rel="noopener noreferrer" class="nav-link">
+                    <i class="mdi mdi-school-outline mdi-18px"></i>
+                    <span>CIPS</span>
+                </a>
+            </li>
+            <!-- Heading - Certification  -->
+            <li class="sidebar-heading">
+                Certification
+            </li>
+            <!-- Nav Item - Pages Collapse Menu - Sertifikacioni test -->
+            <!-- Dropdown Open Link -->
+            <li class="nav-item">
+                <a href="#" class="nav-link nav-link-chevron" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="mdi mdi-file-certificate-outline mdi-18px"></i>
+                    <span>Sertifikacioni test</span>
+                    @*<i class="mdi mdi-chevron-down mdi-18px font-weight-bold float-right"></i>*@
+                </a>
+                <!-- Dropdown Items -->
+                <div class="dropdown-menu ml-2" aria-labelledby="dropdownMenuButton">
+                    <a href="#" class="dropdown-item">CEO TEST</a>
+                    <a href="#" class="dropdown-item">I. oblast - Zakonski i strateški okvir rada</a>
+                    <a href="#" class="dropdown-item">II. oblast - Rad sa poslodavcima</a>
+                    <a href="#" class="dropdown-item">III. oblast - Rad sa tražiocima zaposlenja</a>
+                    <a href="#" class="dropdown-item">VI. oblast - JIS</a>
+                </div>
+            </li>
+            <!-- Heading -->
+            <li class="sidebar-heading">
+                Leave
+            </li>
+            <!-- Nav Item - Logout -->
+            <li class="nav-item">
+                <a href="@Url.Action("LogOut", "Login" )" class="nav-link">
+                    <i class="mdi mdi-logout-variant mdi-18px"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <!-- Divider -->
+            <li><hr class="sidebar-divider d-none d-md-block mt-2"></li>
+            <!-- Sidebar Toggler Button (Sidebar) -->
+            <li class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0 tooltips" id="sidebarToggle" accesskey="m" title="Toggle sidebar - Alt + Shift + M" "></button>
+            </li>
+        </ul>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy;Dima @DateTime.Now.Year</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="mdi mdi-chevron-up mdi-24px"></i>
+    </a>
+
+    @Scripts.Render("~/Content/js")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Tooltipster Tooltips
+            //$('[data-toggle="tooltip"]').tooltip();
+
+            //$('.tooltips').tooltipster();
+            $('.tooltips').tooltipster({
+                delay: 500,
+                distance: 2,
+                theme: 'tooltipster-borderless'
+            });
+            // Left Tooltips for Floating Menu
+            $('.tooltips-left').tooltipster({
+                delay: 500,
+                distance: 2,
+                theme: 'tooltipster-borderless',
+                position: 'left'
+            });
+        });
+        // Smooth Scroll to anchor from Dropdown Menus
+        $(document).ready(function () {
+            // Add smooth scrolling to all links
+            $("a.dropdown-item").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
+    </script>
+</body>
+</html>

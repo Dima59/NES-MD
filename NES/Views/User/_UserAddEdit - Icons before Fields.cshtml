@@ -1,0 +1,228 @@
+﻿<!-- User Page - Add & Edit Partial View -->
+
+@model NES.Models.UserViewModel
+
+<form id="userAddEditForm">
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.UserID)
+
+    <div class="form-row">
+        <!-- User name -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="mdi mdi-account-outline lead text-black-50"></i></span>
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "User name", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger ml-4 w-100" })
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="mdi mdi-lock-outline lead text-black-50"></i></span>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "Password", @value = Model.Password, @required = "true" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger ml-4 w-100" })
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <!-- First name -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="mdi mdi-face lead text-black-50"></i></span>
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "First name" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "small text-danger ml-4 w-100" })
+            </div>
+        </div>
+        <!-- Last name -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="mdi mdi-face lead text-black-50"></i></span>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control mt-1", @placeholder = "Last name" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "small text-danger ml-4 w-100" })
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <!-- Role -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon mt-3"><i class="mdi mdi-badge-account-outline lead text-black-50"></i></span>
+                @Html.DropDownListFor(model => model.RoleID, ViewBag.RoleList as SelectList, "Select User role", new { @class = "form-control select2-basic-single" })
+                @*<span class=" ml-4 w-100">@Html.ValidationMessageFor(model => model.RoleID, "", new { @class = "text-danger" })</span>*@
+            </div>
+        </div>
+
+        @*<div class="col-2"></div>*@
+        <!-- Date created -->
+        <div class="col-6">
+            @*<div class="input-group">
+                    <span class="input-group-addon"><i class="mdi mdi-calendar-account-outline lead text-black-50"></i></span>
+                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control ml-1 pt-3 pb-1", @placeholder = "Date created", @maxlength = "10" } })
+                    @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger ml-4 w-100" })
+                </div>*@
+
+            <!-- Date Picker Input -->
+            <div class="input-group datepicker date mt-0">
+                <div class="input-group-addon">
+                    <i class="mdi mdi-calendar-account-outline tooltips lead text-black-50"></i>
+                </div>
+                @{ Html.EnableClientValidation(false); } <!-- Disable validation since FF & Chrome displays error. Datepicker do validation. -->
+                @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control mt-1", @type = "text", @placeholder = "Created date", @maxlength = "10" } })
+                <span class="ml-4 w-100">@Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })</span>
+                @{ Html.EnableClientValidation(true); } <!-- Enable validation -->
+            </div>
+            <script type="text/javascript">
+                // Set DatePicker options
+                $(function () {
+                    $('.datepicker').datepicker({
+                        //title: 'Choose Date',
+                        //calendarWeeks: true,
+                        clearBtn: true,
+                        todayBtn: "linked",
+                        todayHighlight: true,
+                        weekStart: 1,
+                        language: "sr-RS",
+                        autoclose: "true",
+                        orientation: "left bottom",
+                        format: "dd.mm.yyyy",
+                        templates: {
+                            leftArrow: '&#x276E;',
+                            rightArrow: '&#x276F;'
+                        },
+                    });
+                });
+            </script>
+        </div>
+    </div>
+    <div class="form-row mt-2">
+        <!-- Gender -->
+        <div class="col-6">
+            @*<div class="input-group">
+                    <span class="input-group-addon"><i class="mdi mdi-account-supervisor-outline lead text-black-50"></i></span>
+                    <div class="text-black-50 mt-3 mb-0 pl-1">
+                        Male
+                        @Html.RadioButtonFor(model => model.Gender, "Male", new { id = "male", @type = "radio" })
+                        Female
+                        @Html.RadioButtonFor(model => model.Gender, "Female", new { id = "female", @type = "radio" })
+                    </div>
+                    <p class="d-none" id="userGender">@TempData["userGender"]</p>
+                    <script type="text/javascript">
+                        //var gen = new String(document.getElementById("userGender").textContent);
+                        var gen = document.getElementById("userGender").textContent;
+                        if (gen.trim() == "Male") {
+                            $("input[id='male'][value='Male']").prop('checked', true);
+                        } else if (gen.trim() == "Female") {
+                            $("input[id='female'][value='Female']").prop('checked', true);
+                        }
+                    </script>
+                </div>*@
+            <div class="input-group">
+                <span class="input-group-addon mt-2 mr-1"><i class="mdi mdi-gender-male mdi-24px text-black-50"></i></span>
+                <div class="custom-control custom-radio custom-control-inline mt-3">
+                    @Html.RadioButtonFor(model => model.Gender, "Male", new { @class = "custom-control-input", id = "male", @type = "radio" })
+                    <label class="custom-control-label text-black-50" for="male"><span class="ml-minus-20px">Male</span></label>
+                </div>
+                <span class="input-group-addon mt-2 mr-1"><i class="mdi mdi-gender-female mdi-24px text-black-50"></i></span>
+                <div class="custom-control custom-radio custom-control-inline mt-3">
+                    @Html.RadioButtonFor(model => model.Gender, "Female", new { @class = "custom-control-input", id = "female", @type = "radio" })
+                    <label class="custom-control-label text-black-50" for="female"><span class="ml-minus-20px">Female</span></label>
+                </div>
+                <p class="d-none" id="userGender">@TempData["userGender"]</p>
+
+                <script type="text/javascript">
+                    // Turn on Male/Female radio button
+                    switch (document.getElementById("userGender").textContent.trim()) {
+                        case "Male":
+                            $("input[id='male'][value='Male']").prop('checked', true);
+                            break;
+                        case "Female":
+                            $("input[id='female'][value='Female']").prop('checked', true);
+                            break;
+                    }
+                </script>
+            </div>
+        </div>
+        <!-- Activated? -->
+        <div class="col-6 pl-2">
+            @*<div class="custom-control custom-checkbox mt-3">
+                    @Html.CheckBox("IsActivated", new { @class = "custom-control-input", @type = "checkbox" })
+                    <label class="custom-control-label text-black-50" for="IsActivated"><span style="margin-left: -20px;">Activated?</span></label>
+                </div>*@
+            <div class="input-group mt-3">
+                <div class="custom-control custom-switch" style="line-height: 1.2;">
+                    @Html.CheckBox("IsActivated", new { @class = "custom-control-input", @type = "checkbox" })
+                    <label class="custom-control-label text-black-50" for="IsActivated"><span class="ml-minus-20px">Activated?</span></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <!-- Org. unit -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon mt-3"><i class="mdi mdi-home-assistant lead text-black-50"></i></span>
+                @Html.DropDownListFor(model => model.OrgUnitID, ViewBag.OrgUnitList as SelectList, "Select Org. Unit", new { @class = "form-control select2-basic-single", @onchange = "OrgUnitChanged()" })
+            </div>
+        </div>
+        <!-- Department -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon mt-3"><i class="mdi mdi-source-branch lead text-black-50"></i></span>
+                @Html.DropDownListFor(model => model.DepartmentID, ViewBag.UserDepartmentViewList as SelectList, "Select Department", new { @class = "form-control select2-basic-single", @disabled = "true", @onchange = "DepartmentChanged()" })
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <!-- Position -->
+        <div class="col-6">
+            <div class="input-group">
+                <span class="input-group-addon mt-3"><i class="mdi mdi-chair-rolling lead text-black-50"></i></span>
+                @Html.DropDownListFor(model => model.PositionID, ViewBag.UserPositionViewList as SelectList, "Select Position", new { @class = "form-control select2-basic-single", @disabled = "true" })
+            </div>
+            <div class="col-6"></div>
+        </div>
+    </div>
+    <div class="form-row">
+        <!-- Note -->
+        <div class="col-12">
+            <div class="input-group">
+                <span class="input-group-addon tooltips mt-2 pt-1" id="ExpandNote" onclick="ExpandCollapsedNote(5)" title="Expand Note">
+                    <i class="mdi mdi-note-text-outline lead text-primary"></i>
+                </span>
+                <span class="input-group-addon tooltips mt-2 pt-1" style="display: none;" id="CollapseNote" onclick="ExpandCollapsedNote(1)" title="Collapse Note">
+                    <i class="mdi mdi-note-text-outline mdi-flip-h lead text-primary"></i>
+                </span>
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control pt-3 pb-3", @placeholder = "Note", rows = "1" } })
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Expand<>Collapse Note heigt by clicking on Note icon
+        function ExpandCollapsedNote(noteHeight) {
+            $('#CollapseNote').toggle('show');
+            $('#ExpandNote').toggle('show');
+            $('#Note').attr('rows', noteHeight);
+        }
+        // Enable Department field if OrgUnit field has value
+        if ($('#OrgUnitID').val() > 0) {
+            $("#DepartmentID").prop("disabled", false);
+        }
+        // Enable Position field if Department field has value
+        if ($('#DepartmentID').val() > 0) {
+            $("#PositionID").prop("disabled", false);
+        }
+        // Enable select2
+        $(document).ready(function () {
+            $('.select2-basic-single').select2({
+                theme: 'bootstrap4',
+            });
+        });
+        // Enable Tooltipster with Bordeless theme
+        $('.tooltips').tooltipster({
+            delay: 500,
+            distance: 2,
+            theme: 'tooltipster-borderless'
+        });
+    </script>
+</form> 

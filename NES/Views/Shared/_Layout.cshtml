@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title - NES</title>
+
+    <!-- Check if user is logged in, if not go to Login page -->
+    @{
+        if (Session["userID"] == null)
+        {
+            Response.Redirect(@Url.Action("Index", "Login"));
+        }
+    }
+</head>
+<body class="container m-0 p-0" id="page-top">
+    @Styles.Render("~/Content/css")
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <!-- Floating Side Menu -->
+        <nav class="floating-menu">
+            <ul class="main-menu">
+                <li>
+                    <a href="@Url.Action("Index", "Home")" class="ripple tooltips-left" title="Dashboard">
+                        <i class="mdi mdi-home-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "User")" class="ripple tooltips-left" id="editUsersFloatingMenu" title="Users">
+                        <i class="mdi mdi-account-edit-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Index", "Roles")" class="ripple tooltips-left" id="editRolesFloatingMenu" title="Roles">
+                        <i class="mdi mdi-badge-account-horizontal-outline mdi-18px p-1"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("LogOut", "Login")" class="ripple tooltips-left" title="Logout">
+                        <i class="mdi mdi-logout-variant mdi-18px p-1"></i>
+                    </a>
+                </li>
+            </ul>
+            <div class="menu-bg"></div>
+        </nav>
+        <!-- End of Floating Side Menu -->
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-darkblue sidebar sidebar-dark accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <li class="sidebar-brand d-flex align-items-center justify-content-center">
+                <div class="sidebar-brand-icon tooltips" title="Prognosis 2020">
+                    <i class="mdi mdi-chart-bubble"></i>
+                </div>
+                <div class="sidebar-brand-text text-nowrap"> Prognosis 2020</div>
+            </li>
+            <!-- Divider -->
+            <li><hr class="sidebar-divider"></li>
+            <!-- Heading -->
+            <li class="sidebar-heading">
+                Home
+            </li>
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Home")" class="nav-link">
+                    <i class="mdi mdi-home-outline mdi-18px"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!-- Heading -->
+            <li class="sidebar-heading mt-1" id="usersAdministrationHeading">
+                Users
+            </li>
+            <!-- Nav Item - User Add/Edit/Delete -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "User" )" class="nav-link" id="usersAdministrationLink">
+                    <i class="mdi mdi-account-edit-outline mdi-18px"></i>
+                    <span>Users administration</span>
+                </a>
+            </li>
+            <!-- Heading -->
+            <li class="sidebar-heading mt-1" id="codebooksHeading">
+                Codebooks
+            </li>
+            <!-- Nav Item - Roles -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Roles")" class="nav-link" id="rolesLink">
+                    <i class="mdi mdi-badge-account-horizontal-outline mdi-18px"></i>
+                    <span>Roles</span>
+                </a>
+            </li>
+            <!-- Nav Item - Organizational Units -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "OrgUnits")" class="nav-link" id="organizationalUnitsLink">
+                    <i class="mdi mdi-home-assistant mdi-18px"></i>
+                    <span>Organizational Units</span>
+                </a>
+            </li>
+            <!-- Nav Item - Departments -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Departments")" class="nav-link" id="departmentsLink">
+                    <i class="mdi mdi-source-branch mdi-18px"></i>
+                    <span>Departments</span>
+                </a>
+            </li>
+            <!-- Nav Item - Positions -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "Positions")" class="nav-link" id="positionsLink">
+                    <i class="mdi mdi-chair-rolling mdi-18px"></i>
+                    <span>Positions</span>
+                </a>
+            </li>
+            <!-- Nav Item - OrgUnit~Department -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "OrgUnitDepartment")" class="nav-link" id="orgUnitsDepartmentsLink">
+                    @*<i class="mdi mdi-home-assistant mdi-18px"></i>*@
+                    <span>
+                        OrgUnit
+                        <i class="mdi mdi-set-center mdi-18px"></i>
+                        Department
+                        @*<i class="mdi mdi-source-branch mdi-18px"></i>*@
+                    </span>
+                </a>
+            </li>
+            <!-- Nav Item - Department~Position -->
+            <li class="nav-item">
+                <a href="@Url.Action("Index", "DepartmentPosition")" class="nav-link" id="departmentsPositionsLink">
+                    @*<i class="mdi mdi-source-branch mdi-18px"></i>*@
+                    <span>
+                        Department
+                        <i class="mdi mdi-set-center mdi-18px"></i>
+                        Position
+                        @*<i class="mdi mdi-chair-rolling mdi-18px"></i>*@
+                    </span>
+                </a>
+            </li>
+            <!-- Heading -->
+            <li class="sidebar-heading">
+                Leave
+            </li>
+            <!-- Nav Item - Logout -->
+            <li class="nav-item">
+                <a href="@Url.Action("LogOut", "Login")" class="nav-link">
+                    <i class="mdi mdi-logout-variant mdi-18px"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <!-- Divider -->
+            <li><hr class="sidebar-divider d-none d-md-block mt-2"></li>
+            <!-- Sidebar Toggler Button (Sidebar) -->
+            <li class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0 tooltips" id="sidebarToggle" accesskey="m" title="Toggle sidebar - Alt + Shift + M"></button>
+            </li>
+        </ul>
+
+        <!-- End of Sidebar -->
+        <!-- Main Content -->
+        <div class="mt-2 mx-3">
+            @RenderBody()
+        </div>
+        <!-- End of Main Content -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a href="#page-top" class="scroll-to-top tooltips" title="Go to top"><i class="mdi mdi-chevron-up mdi-24px"></i></a>
+
+    @Scripts.Render("~/Content/js")
+    @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        // Help button tooltip content
+        $(document).ready(function () {
+            var helpText =
+                "<small>KEYBOARD SHORTCUTS<br />" +
+                "EDIT<br /></small>" +
+                "<div style='margin-left: 8px;'>Add new -- Alt + Shift + N<br />" +
+                "Save new data -- Alt + Shift + S<br />" +
+                "Update data -- Alt + Shift + U<br /></div>" +
+                "<small>SEARCH<br /></small>" +
+                "<div style='margin-left: 8px;'>Display search row -- Alt + Shift + D<br />" +
+                "Hide search row -- Alt + Shift + H<br />" +
+                "Clear ALL search -- Alt + Shift + A<br />" +
+                "Clear global search -- Alt + Shift + G<br /></div>" +
+                "<small>SIDEBAR<br /></small>" +
+                "<div style='margin-left: 8px;'>Toggle sidebar -- Alt + Shift + M<br /></div>"
+            $('#helpTooltip').tooltipster({
+                delay: 500,
+                distance: 2,
+                theme: ['tooltipster-shadow'],
+                content: $(helpText)
+            });
+        });
+
+        // Tooltipsters for page
+        $(document).ready(function () {
+            //$('[data-toggle="tooltip"]').tooltip();
+
+            //$('.tooltips').tooltipster();
+            $('.tooltips').tooltipster({
+                delay: 500,
+                distance: 2,
+                theme: 'tooltipster-borderless'
+            });
+            // Left Tooltips for Floating Menu
+            $('.tooltips-left').tooltipster({
+                delay: 500,
+                distance: 2,
+                theme: 'tooltipster-borderless',
+                position: 'left'
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+﻿<!-- User Page - User Details Partial View -->
+
+@foreach (var item in ViewBag.UserList)
+{
+    <div class="d-flex mb-2">
+        <div class="flex-fill"><small class="text-black-50">Name</small><br><span class="lead font-weight-bold">@item.FirstName&nbsp;@item.LastName</span></div>
+        <div class="flex-fill"><small class="text-black-50">Password</small><br><span class="lead font-weight-bold">@item.Password</span></div>
+        <div class="flex-fill"><small class="text-black-50">Role</small><br><span class="lead font-weight-bold">@item.RoleName</span></div>
+        <div class="ml-auto">
+            <br>
+            @if (@item.IsActivated)
+            {
+                <span class="badge badge-success">Active</span>
+            }
+            else
+            {
+                <span class="badge badge-danger">Inactive</span>
+            }
+        </div>
+    </div>
+    <div class="ml-3">
+        @if (@item.OrgUnitName != null)
+        {
+            <div><small class="text-black-50">Organizational Unit</small></div>
+            <div><b>@item.OrgUnitName</b></div>
+        }
+        @if (@item.DepartmentName != null)
+        {
+            <div><small class="text-black-50">Department</small></div>
+            <div><b>@item.DepartmentName</b></div>
+        }
+        @if (@item.PositionName != null)
+        {
+            <div><small class="text-black-50">Position</small></div>
+            <div><b>@item.PositionName</b></div>
+        }
+        @if (@item.DateCreated != null)
+        {
+            <div><small class="text-black-50">Created</small></div>
+            <div><b>@item.DateCreated.ToString("dd.MM.yyyy.")</b></div>
+        }
+        @if (@item.Gender != null)
+        {
+            <small class="text-black-50">Gender</small>
+            <br>
+            if (@item.Gender.Trim() == "Male")
+            {
+                <i class='mdi mdi-gender-male mdi-18px font-weight-bold text-primary m-0'></i><span><small class="font-weight-bold"> Male</small></span>
+            }
+            else if (@item.Gender.Trim() == "Female")
+            {
+                <i class='mdi mdi-gender-female mdi-18px font-weight-bold text-primary m-0'></i><span><small class="font-weight-bold"> Female</small></span>
+            }
+        }
+        @if (@item.Note != null)
+        {
+            <div><small class="text-black-50">Note</small></div>
+            <div>@item.Note</div>
+        }
+    </div>
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd47cb1d1a7a4a43b7457ad5668ea68d" Name="Diagram1">
+        <EntityTypeShape EntityType="UserModel.Role" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserModel.User" Width="1.5" PointX="0.625" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="UserModel.fk_User_Role" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="UserModel.Department" Width="1.5" PointX="2.875" PointY="4.625" />
+        <EntityTypeShape EntityType="UserModel.OrgUnit" Width="1.5" PointX="2.875" PointY="2.375" />
+        <EntityTypeShape EntityType="UserModel.Position" Width="1.5" PointX="2.875" PointY="7" />
+        <EntityTypeShape EntityType="UserModel.UserDepartmentView" Width="1.875" PointX="7.75" PointY="0.5" />
+        <EntityTypeShape EntityType="UserModel.UserPositionView" Width="1.625" PointX="7.75" PointY="2.375" />
+        <AssociationConnector Association="UserModel.fk_User_OrgUnit" />
+        <AssociationConnector ManuallyRouted="false" Association="UserModel.FK_User_Department">
+        </AssociationConnector>
+        <AssociationConnector ManuallyRouted="false" Association="UserModel.FK_User_Position">
+        </AssociationConnector>
+        <EntityTypeShape EntityType="UserModel.Department_Position" Width="1.875" PointX="5.125" PointY="5.875" />
+        <EntityTypeShape EntityType="UserModel.OrgUnit_Department" Width="1.875" PointX="5.125" PointY="3.375" />
+        <AssociationConnector Association="UserModel.fk_DP_Department" />
+        <AssociationConnector Association="UserModel.fk_OUD_Department" />
+        <AssociationConnector Association="UserModel.fk_DP_Position" />
+        <AssociationConnector Association="UserModel.fk_OUD_OrgUnit" />
+        <EntityTypeShape EntityType="UserModel.DepartmentPositionView" Width="2" PointX="7.75" PointY="4.25" />
+        <EntityTypeShape EntityType="UserModel.OrgUnitDepartmentView" Width="2" PointX="7.75" PointY="6.125" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

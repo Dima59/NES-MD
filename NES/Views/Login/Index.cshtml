@@ -1,0 +1,125 @@
+﻿<!-- Login - Split Page -->
+
+@model NES.Models.UserLoginView
+
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Login/css")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Login - NES</title>
+</head>
+
+<body class="bg-white">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <!-- The image half -->
+            <div class="col-md-6 d-none d-md-flex" id="bg-image">
+                <!-- Page Header -->
+                <h6 class="col-12 text-white-50 text-center small">
+                    <img style="width: 8em;" src="~/Images/logoportal004.png" /><br />
+                    © Sektor za razvoj i informaciono-komunikacione tehnologije <br /> Odeljenje za projektovanje i razvoj
+                </h6>
+            </div>
+            <!-- The content half -->
+            <div class="col-md-6 bg-light">
+                <div class="login d-flex align-items-center py-5">
+                    <!-- Content -->
+                    <div class="container">
+                        <p class="col-12 fixed-top font-weight-light text-right mt-3"><span class="mr-5">Welcome back!</span></p>
+                        <div class="row">
+                            <div class="col-lg-10 col-xl-7 mx-auto">
+                                <h3 class="display-4 login-title text-nowrap">Prognosis 2020</h3>
+                                <p class="text-muted text-nowrap mb-4">Serbian labour market annual forecasts - NES</p>
+                                <span class="lead text-danger">@Html.DisplayFor(model => model.LoginErrorMsg)</span>
+                                @using (Html.BeginForm("Authorise", "Login", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <form>
+                                        <!-- User Name -->
+                                        <div class="form-row my-3 mx-0">
+                                            <div class="input-group">
+                                                @*<span class="input-group-addon mt-1"><i class="mdi mdi-account-outline mdi-24px text-black-50"></i></span>*@
+                                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                            </div>
+                                            <div class="input-group pl-1">
+                                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger", @value = "" })
+                                            </div>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="form-row mt-3 mb-1 mx-0">
+                                            <div class="input-group">
+                                                @*<span class="input-group-addon mt-1"><i class="mdi mdi-lock-outline mdi-24px text-black-50"></i></span>*@
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password", @placeholder = "Password" } })
+                                            </div>
+                                            <div class="input-group pl-1">
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger", @value = "" })
+                                            </div>
+                                        </div>
+                                        <!-- Is Activated hidden field -->
+                                        <div class="form-row d-none">
+                                            @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                                        </div>
+                                        <!-- Reset Password Link -->
+                                        <div class="text-right">
+                                            <a class="small text-black-50 font-weight-light text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D" data-toggle="tooltip" title="Mail to Admin">Forgotten password?</a>
+                                        </div>
+                                        <!-- Submit data -->
+                                        <button type="submit" class="btn btn-primary btn-block mt-4 py-2" onclick="SubmitClick()" data-toggle="tooltip" title="Login"><i class="mdi mdi-login-variant mdi-36px"></i></button>
+                                    </form>
+                                }
+                                <p class="text-center text-secondary small mt-3">© Dima 2020</p>
+                            </div>
+                        </div>
+                        <!-- small Page Footer -->
+                        <div class="col-12 d-lg-none d-md-none fixed-bottom text-center mb-1">
+                            <img style="width: 8em;" src="~/Images/logoapportal.png" />
+                            <h6 class="text-black-50 small">
+                                © Sektor za razvoj i informaciono-komunikacione tehnologije<br />Odeljenje za projektovanje i razvoj
+                            </h6>
+                        </div>
+                    </div><!-- End -->
+                </div>
+            </div><!-- End -->
+        </div>
+    </div>
+
+    @Scripts.Render("~/Login/js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            // Random login background images - https://stackoverflow.com/questions/19369426/random-background-image-on-refresh
+            var images = [
+                'laptop-1.jpg',
+                'lock-2.jpg',
+                'laptop-2.jpg',
+                'lock-3.jpg',
+                'laptop-4.jpg',
+                'lock-4.jpg',
+                'laptop-5.jpg',
+                'lock-7.jpg',
+                'laptop-8.jpg',
+                'lock-8.jpg',
+                'laptop-9.jpg',
+                'lock-9.jpg',
+                'labour-market-1.jpg',
+                'lock-10.jpg',
+                'labour-market-2.jpg',
+                'lock-11.jpg',
+                'labour-market-3.png',
+                'lock-12.jpg',
+                'lock-13.jpg',
+                'lock-14.jpg',
+            ];
+            $('#bg-image').css({ 'background-image': 'url(/Images/' + images[Math.floor(Math.random() * images.length)] + ')' });
+        });
+    </script>
+</body>
+</html>

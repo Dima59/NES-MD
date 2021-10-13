@@ -1,0 +1,168 @@
+﻿<!-- Login - Info In Modal -->
+
+@model NES.Models.UserLoginView
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@Styles.Render("~/Login/css")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+</head>
+
+<body>
+    <!-- Modal - Horizontal login -->
+    @*<div class="modal fade" id="loginModal" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header pt-2 pb-0 pl-3">
+                        <div class="modal-title">
+                            <h4 class="login-title">Prognoze 2019</h4>
+                        </div>
+                    </div>
+                    <div class="modal-body p-0 pt-2">
+                        @using (Html.BeginForm("Authorise", "Login", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="text-danger pl-3">@Html.DisplayFor(model => model.LoginErrorMsg)</div>
+
+                            <form>
+                                <div class="form-row">
+                                    <div class="col ml-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon mt-1"><i class="mdi mdi-account-outline text-black-50 mdi-24px"></i></span>
+                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                        </div>
+                                        <div class="input-group pl-4">
+                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger", @value = "" })
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="input-group">
+                                            <span class="input-group-addon mt-1"><i class="mdi mdi-lock-outline text-black-50 mdi-24px"></i></span>
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Password" } })
+                                        </div>
+                                        <div class="input-group pl-4">
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger", @value = "" })
+                                        </div>
+                                    </div>
+                                    <div class="form-row d-none">
+                                        @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                                    </div>
+
+                                    <div class="col-auto mr-3">
+                                        <button type="submit" class="btn btn-primary btn-sm" data-toggle="tooltip" title="Login">
+                                            <i class="mdi mdi-login-variant mdi-24px"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col pb-1 mr-3 text-right">
+                                        <a class="small text-black-50 text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D">Forgotten password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        }
+                    </div>
+                    <div class="modal-footer footer-background p-0">
+                        <div class="col pt-2">
+                            <h6 class="text-white text-center">
+                                <small>
+                                    © Sektor za razvoj i informaciono-komunikacione tehnologije<br />
+                                    Odeljenje za projektovanje i razvoj
+                                </small>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    <!-- Modal - Vertical login -->
+    <div class="modal fade" id="loginModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-width">
+            <div class="modal-content">
+                <div class="modal-header pt-2 pb-0 pl-3">
+                    <div class="modal-title">
+                        <h4 class="login-title">Prognoze 2019</h4>
+                    </div>
+                </div>
+                <div class="modal-body pt-0 pr-3 pb-0 pl-3">
+
+                    @using (Html.BeginForm("Authorise", "Login", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-danger">@Html.DisplayFor(model => model.LoginErrorMsg)</div>
+
+                        <form>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <span class="input-group-addon pt-1"><i class="mdi mdi-account-outline text-black-50 mdi-24px"></i></span>
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                </div>
+                                <div class="input-group pl-4">
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger", @value = "" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <span class="input-group-addon mt-1"><i class="mdi mdi-lock-outline text-black-50 mdi-24px"></i></span>
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Password" } })
+                                </div>
+                                <div class="input-group pl-4">
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @value = "" })
+                                </div>
+                            </div>
+                            <div class="form-row d-none">
+                                @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col text-right mt-1">
+                                    <a class="small text-black-50 text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D">Forgotten password?</a>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary btn-block mt-1 mb-2 pt-2 pb-2" data-toggle="tooltip" title="Login"><i class="mdi mdi-login-variant mdi-24px"></i></button>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <div class="row footer-background m-0 mt-1">
+                    <div class="col pt-2 pr-0 pl-0">
+                        <h6 class="text-white text-center">
+                            <small>
+                                © Sektor za razvoj i informaciono-komunikacione tehnologije<br />
+                                Odeljenje za projektovanje i razvoj
+                            </small>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Footer -->
+    <div class="fixed-bottom p-0">
+        <h6 class="text-white text-center">
+            <img style="width: 10em;" src="~/Images/logoportal004.png" />
+        </h6>
+    </div>
+
+    @Scripts.Render("~/Login/js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#loginModal').modal();
+            $('#loginModal').on('shown.bs.modal', function () {
+                $('.modal-backdrop.show').css('opacity', '0.1');
+            });
+        });
+    </script>
+</body>
+</html>

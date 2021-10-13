@@ -1,0 +1,51 @@
+﻿<!-- Edit Role -->
+
+@model NES.Models.Role
+
+@{
+    ViewBag.Title = "Edit Role";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="d-flex border-bottom">
+        <button class="btn btn-link d-md-none tooltips icn-color mr-3 mb-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+        <h3 class="text-header" style="width: 450px;">Edit Role</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal mx-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.RoleID)
+
+            <div class="form-label-group">
+                @*@Html.LabelFor(model => model.RoleName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                @Html.EditorFor(model => model.RoleName, new { htmlAttributes = new { @class = "form-control", @id = "roleInput", @type = "text", @placeholder = "Role name", @autofocus = "autofocus" } })
+                <label for="roleInput" class="text-black-50">Role name</label>
+
+                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+            </div>
+
+            @*<input type="submit" value="Save" class="btn btn-default" />*@
+            <button class="btn btn-primary btnSubmit btn-block tooltips" id="btnAdd" title="Save Role data"><i class="mdi mdi-content-save-edit-outline mdi-18px"></i> Update</button>
+        </div>
+    }
+
+    <div>
+        @*@Html.ActionLink("Back to list", "Index")*@
+        @Html.ActionLink("\u21A9", "Index", null, new { @class = "btn btn-link tooltips text-warning text-decoration-none", @title = "Back to list" })
+        @*<button class="btn btn-link tooltips text-warning" title="Back to list" onclick="location.href='@Url.Action("Index", "Roles")'"><i class="mdi mdi-arrow-left-circle mdi-24px"></i></button>*@
+    </div>
+</body>
+</html>

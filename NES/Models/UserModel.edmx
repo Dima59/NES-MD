@@ -1,0 +1,672 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UserModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department_Position">
+          <Key>
+            <PropertyRef Name="DepPosID" />
+          </Key>
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="DepPosID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgUnit">
+          <Key>
+            <PropertyRef Name="OrgUnitID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrgUnitName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgUnit_Department">
+          <Key>
+            <PropertyRef Name="OrgDepID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="int" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="OrgDepID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="IsActivated" Type="bit" />
+          <Property Name="Gender" Type="char" MaxLength="10" />
+          <Property Name="OrgUnitID" Type="int" />
+          <Property Name="DepartmentID" Type="int" />
+          <Property Name="PositionID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NESDB.dbo.DepartmentPositionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DepartmentPositionView">
+          <Key>
+            <PropertyRef Name="DepPosID" />
+            
+            
+          </Key>
+          <Property Name="DepPosID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NESDB.dbo.OrgUnitDepartmentView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrgUnitDepartmentView">
+          <Key>
+            <PropertyRef Name="OrgDepID" />
+          </Key>
+          <Property Name="OrgDepID" Type="int" Nullable="false" />
+          <Property Name="OrgUnitName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NESDB.dbo.UserDepartmentView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserDepartmentView">
+          <Key>
+            <PropertyRef Name="OrgUnitID" />
+            
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="int" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NESDB.dbo.UserPositionView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserPositionView">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+            <PropertyRef Name="PositionID" />
+            
+          </Key>
+          <Property Name="DepartmentID" Type="int" Nullable="false" />
+          <Property Name="PositionID" Type="int" Nullable="false" />
+          <Property Name="PositionName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_DP_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="Department_Position" Type="Self.Department_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Department_Position">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DP_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Department_Position" Type="Self.Department_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Department_Position">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OUD_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="1" />
+          <End Role="OrgUnit_Department" Type="Self.OrgUnit_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="OrgUnit_Department">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OUD_OrgUnit">
+          <End Role="OrgUnit" Type="Self.OrgUnit" Multiplicity="1" />
+          <End Role="OrgUnit_Department" Type="Self.OrgUnit_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgUnit">
+              <PropertyRef Name="OrgUnitID" />
+            </Principal>
+            <Dependent Role="OrgUnit_Department">
+              <PropertyRef Name="OrgUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_OrgUnit">
+          <End Role="OrgUnit" Type="Self.OrgUnit" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgUnit">
+              <PropertyRef Name="OrgUnitID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OrgUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UserModelStoreContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department_Position" EntityType="Self.Department_Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgUnit" EntityType="Self.OrgUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgUnit_Department" EntityType="Self.OrgUnit_Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DepartmentPositionView" EntityType="Self.DepartmentPositionView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DepartmentPositionView].[DepPosID] AS [DepPosID], 
+    [DepartmentPositionView].[DepartmentName] AS [DepartmentName], 
+    [DepartmentPositionView].[PositionName] AS [PositionName]
+    FROM [dbo].[DepartmentPositionView] AS [DepartmentPositionView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrgUnitDepartmentView" EntityType="Self.OrgUnitDepartmentView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrgUnitDepartmentView].[OrgDepID] AS [OrgDepID], 
+    [OrgUnitDepartmentView].[OrgUnitName] AS [OrgUnitName], 
+    [OrgUnitDepartmentView].[DepartmentName] AS [DepartmentName]
+    FROM [dbo].[OrgUnitDepartmentView] AS [OrgUnitDepartmentView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserDepartmentView" EntityType="Self.UserDepartmentView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserDepartmentView].[OrgUnitID] AS [OrgUnitID], 
+    [UserDepartmentView].[DepartmentName] AS [DepartmentName], 
+    [UserDepartmentView].[DepartmentID] AS [DepartmentID]
+    FROM [dbo].[UserDepartmentView] AS [UserDepartmentView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserPositionView" EntityType="Self.UserPositionView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserPositionView].[DepartmentID] AS [DepartmentID], 
+    [UserPositionView].[PositionID] AS [PositionID], 
+    [UserPositionView].[PositionName] AS [PositionName]
+    FROM [dbo].[UserPositionView] AS [UserPositionView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_DP_Department" Association="Self.fk_DP_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Department_Position" EntitySet="Department_Position" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DP_Position" Association="Self.fk_DP_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Department_Position" EntitySet="Department_Position" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OUD_Department" Association="Self.fk_OUD_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="OrgUnit_Department" EntitySet="OrgUnit_Department" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OUD_OrgUnit" Association="Self.fk_OUD_OrgUnit">
+            <End Role="OrgUnit" EntitySet="OrgUnit" />
+            <End Role="OrgUnit_Department" EntitySet="OrgUnit_Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="Self.FK_User_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_OrgUnit" Association="Self.fk_User_OrgUnit">
+            <End Role="OrgUnit" EntitySet="OrgUnit" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Position" Association="Self.FK_User_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_Role" Association="Self.fk_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.fk_User_Role" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.fk_User_Role" FromRole="User" ToRole="Role" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="IsActivated" Type="Boolean" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="OrgUnitID" Type="Int32" />
+          <Property Name="DepartmentID" Type="Int32" />
+          <Property Name="PositionID" Type="Int32" />
+          <NavigationProperty Name="OrgUnit" Relationship="UserModel.fk_User_OrgUnit" FromRole="User" ToRole="OrgUnit" />
+          <NavigationProperty Name="Department" Relationship="UserModel.FK_User_Department" FromRole="User" ToRole="Department" />
+          <NavigationProperty Name="Position" Relationship="UserModel.FK_User_Position" FromRole="User" ToRole="Position" />
+        </EntityType>
+        <Association Name="fk_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UserEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="fk_User_Role" Association="Self.fk_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <EntitySet Name="Department" EntityType="UserModel.Department" />
+          <EntitySet Name="OrgUnit" EntityType="UserModel.OrgUnit" />
+          <EntitySet Name="Position" EntityType="UserModel.Position" />
+          <EntitySet Name="UserDepartmentView" EntityType="UserModel.UserDepartmentView" />
+          <EntitySet Name="UserPositionView" EntityType="UserModel.UserPositionView" />
+          <AssociationSet Name="fk_User_OrgUnit" Association="UserModel.fk_User_OrgUnit">
+            <End EntitySet="OrgUnit" Role="OrgUnit" />
+            <End EntitySet="User" Role="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Department" Association="UserModel.FK_User_Department">
+            <End EntitySet="Department" Role="Department" />
+            <End EntitySet="User" Role="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Position" Association="UserModel.FK_User_Position">
+            <End EntitySet="Position" Role="Position" />
+            <End EntitySet="User" Role="User" />
+          </AssociationSet>
+          <EntitySet Name="Department_Position" EntityType="UserModel.Department_Position" />
+          <EntitySet Name="OrgUnit_Department" EntityType="UserModel.OrgUnit_Department" />
+          <AssociationSet Name="fk_DP_Department" Association="UserModel.fk_DP_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Department_Position" EntitySet="Department_Position" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OUD_Department" Association="UserModel.fk_OUD_Department">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="OrgUnit_Department" EntitySet="OrgUnit_Department" />
+          </AssociationSet>
+          <AssociationSet Name="fk_DP_Position" Association="UserModel.fk_DP_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Department_Position" EntitySet="Department_Position" />
+          </AssociationSet>
+          <AssociationSet Name="fk_OUD_OrgUnit" Association="UserModel.fk_OUD_OrgUnit">
+            <End Role="OrgUnit" EntitySet="OrgUnit" />
+            <End Role="OrgUnit_Department" EntitySet="OrgUnit_Department" />
+          </AssociationSet>
+          <EntitySet Name="DepartmentPositionView" EntityType="UserModel.DepartmentPositionView" />
+          <EntitySet Name="OrgUnitDepartmentView" EntityType="UserModel.OrgUnitDepartmentView" />
+          </EntityContainer>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="UserModel.FK_User_Department" FromRole="Department" ToRole="User" />
+          <NavigationProperty Name="Department_Position" Relationship="UserModel.fk_DP_Department" FromRole="Department" ToRole="Department_Position" />
+          <NavigationProperty Name="OrgUnit_Department" Relationship="UserModel.fk_OUD_Department" FromRole="Department" ToRole="OrgUnit_Department" />
+        </EntityType>
+        <EntityType Name="OrgUnit">
+          <Key>
+            <PropertyRef Name="OrgUnitID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrgUnitName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="UserModel.fk_User_OrgUnit" FromRole="OrgUnit" ToRole="User" />
+          <NavigationProperty Name="OrgUnit_Department" Relationship="UserModel.fk_OUD_OrgUnit" FromRole="OrgUnit" ToRole="OrgUnit_Department" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="PositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="UserModel.FK_User_Position" FromRole="Position" ToRole="User" />
+          <NavigationProperty Name="Department_Position" Relationship="UserModel.fk_DP_Position" FromRole="Position" ToRole="Department_Position" />
+        </EntityType>
+        <EntityType Name="UserDepartmentView">
+          <Key>
+            <PropertyRef Name="OrgUnitID" />
+            <PropertyRef Name="DepartmentID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPositionView">
+          <Key>
+            <PropertyRef Name="DepartmentID" />
+            <PropertyRef Name="PositionID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_User_OrgUnit">
+          <End Type="UserModel.OrgUnit" Multiplicity="0..1" Role="OrgUnit" />
+          <End Type="UserModel.User" Multiplicity="*" Role="User" />
+          <ReferentialConstraint>
+            <Principal Role="OrgUnit">
+              <PropertyRef Name="OrgUnitID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="OrgUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Department">
+          <End Type="UserModel.Department" Multiplicity="0..1" Role="Department" />
+          <End Type="UserModel.User" Multiplicity="*" Role="User" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Position">
+          <End Type="UserModel.Position" Multiplicity="0..1" Role="Position" />
+          <End Type="UserModel.User" Multiplicity="*" Role="User" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Department_Position">
+          <Key>
+            <PropertyRef Name="DepPosID" />
+          </Key>
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="PositionID" Type="Int32" Nullable="false" />
+          <Property Name="DepPosID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Department" Relationship="UserModel.fk_DP_Department" FromRole="Department_Position" ToRole="Department" />
+          <NavigationProperty Name="Position" Relationship="UserModel.fk_DP_Position" FromRole="Department_Position" ToRole="Position" />
+        </EntityType>
+        <EntityType Name="OrgUnit_Department">
+          <Key>
+            <PropertyRef Name="OrgDepID" />
+          </Key>
+          <Property Name="OrgUnitID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentID" Type="Int32" Nullable="false" />
+          <Property Name="OrgDepID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Department" Relationship="UserModel.fk_OUD_Department" FromRole="OrgUnit_Department" ToRole="Department" />
+          <NavigationProperty Name="OrgUnit" Relationship="UserModel.fk_OUD_OrgUnit" FromRole="OrgUnit_Department" ToRole="OrgUnit" />
+        </EntityType>
+        <Association Name="fk_DP_Department">
+          <End Type="UserModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="UserModel.Department_Position" Role="Department_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="Department_Position">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OUD_Department">
+          <End Type="UserModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="UserModel.OrgUnit_Department" Role="OrgUnit_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentID" />
+            </Principal>
+            <Dependent Role="OrgUnit_Department">
+              <PropertyRef Name="DepartmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_DP_Position">
+          <End Type="UserModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="UserModel.Department_Position" Role="Department_Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionID" />
+            </Principal>
+            <Dependent Role="Department_Position">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_OUD_OrgUnit">
+          <End Type="UserModel.OrgUnit" Role="OrgUnit" Multiplicity="1" />
+          <End Type="UserModel.OrgUnit_Department" Role="OrgUnit_Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrgUnit">
+              <PropertyRef Name="OrgUnitID" />
+            </Principal>
+            <Dependent Role="OrgUnit_Department">
+              <PropertyRef Name="OrgUnitID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DepartmentPositionView">
+          <Key>
+            <PropertyRef Name="DepPosID" />
+          </Key>
+          <Property Name="DepPosID" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrgUnitDepartmentView">
+          <Key>
+            <PropertyRef Name="OrgDepID" />
+          </Key>
+          <Property Name="OrgDepID" Type="Int32" Nullable="false" />
+          <Property Name="OrgUnitName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserModelStoreContainer" CdmEntityContainer="UserEntities">
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="UserModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="UserModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="UserModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgUnit">
+            <EntityTypeMapping TypeName="UserModel.OrgUnit">
+              <MappingFragment StoreEntitySet="OrgUnit">
+                <ScalarProperty Name="OrgUnitName" ColumnName="OrgUnitName" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position">
+            <EntityTypeMapping TypeName="UserModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDepartmentView">
+            <EntityTypeMapping TypeName="UserModel.UserDepartmentView">
+              <MappingFragment StoreEntitySet="UserDepartmentView">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPositionView">
+            <EntityTypeMapping TypeName="UserModel.UserPositionView">
+              <MappingFragment StoreEntitySet="UserPositionView">
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department_Position">
+            <EntityTypeMapping TypeName="UserModel.Department_Position">
+              <MappingFragment StoreEntitySet="Department_Position">
+                <ScalarProperty Name="DepPosID" ColumnName="DepPosID" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgUnit_Department">
+            <EntityTypeMapping TypeName="UserModel.OrgUnit_Department">
+              <MappingFragment StoreEntitySet="OrgUnit_Department">
+                <ScalarProperty Name="OrgDepID" ColumnName="OrgDepID" />
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DepartmentPositionView">
+            <EntityTypeMapping TypeName="UserModel.DepartmentPositionView">
+              <MappingFragment StoreEntitySet="DepartmentPositionView">
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DepPosID" ColumnName="DepPosID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgUnitDepartmentView">
+            <EntityTypeMapping TypeName="UserModel.OrgUnitDepartmentView">
+              <MappingFragment StoreEntitySet="OrgUnitDepartmentView">
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="OrgUnitName" ColumnName="OrgUnitName" />
+                <ScalarProperty Name="OrgDepID" ColumnName="OrgDepID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-warning .tooltipster-box {
+    background: #FFA31D;
+}
+
+.tooltipster-sidetip.tooltipster-borderless.tooltipster-borderless-warning .tooltipster-content {
+    color: #000000;
+    font-weight: 500;
+}
+
+.tooltipster-sidetip.tooltipster-borderless-warning.tooltipster-bottom .tooltipster-arrow-border {
+    border-bottom-color: #FFA31D;
+    border-bottom-color: rgba(253, 126, 20, 1)
+}
+
+.tooltipster-sidetip.tooltipster-borderless-warning.tooltipster-left .tooltipster-arrow-border {
+    border-left-color: #FFA31D;
+    border-left-color: rgba(253, 126, 20, 1)
+}
+
+.tooltipster-sidetip.tooltipster-borderless-warning.tooltipster-right .tooltipster-arrow-border {
+    border-right-color: #FFA31D;
+    border-right-color: rgba(253, 126, 20, 1)
+}
+
+.tooltipster-sidetip.tooltipster-borderless-warning.tooltipster-top .tooltipster-arrow-border {
+    border-top-color: #FFA31D;
+    border-top-color: rgba(253, 126, 20,, 1)
+}

@@ -1,0 +1,50 @@
+﻿@model NES.Models.Role
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Positions</title>
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="d-flex border-bottom">
+        <button class="btn btn-link d-md-none tooltips icn-color mr-3 mb-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+        <h3 class="text-header" @*style="width: 450px;"*@>Delete Role</h3>
+    </div>
+
+    <div class="mx-3">
+        <h4 class="font-weight-normal mt-2">Are you sure you want to delete this?</h4>
+        <dl class="dl-horizontal">
+            <dt class="text-black-50">
+                Role Name:
+            </dt>
+            <dd class="lead font-weight-normal mt-2">
+                @Html.DisplayFor(model => model.RoleName)
+            </dd>
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <button class="btn btn-warning btnSubmit btn-block tooltips" title="Delete Role!" disabled><i class="mdi mdi-delete-alert-outline mdi-18px"></i> Delete</button>
+
+                @*<input type="submit" value="Delete" class="btn btn-default" /> |*@
+            </div>
+        }
+    </div>
+
+    <div class="mt-2">
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("\u21A9", "Index", null, new { @class = "btn btn-link tooltips text-warning text-decoration-none", @title = "Back to list" })
+    </div>
+</body>
+</html>

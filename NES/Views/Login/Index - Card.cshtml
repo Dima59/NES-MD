@@ -1,0 +1,130 @@
+﻿<!-- Login - Card -->
+
+@model NES.Models.UserLoginView
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+@Styles.Render("~/Login/css")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+</head>
+<body>
+    <div class="container">
+        @using (Html.BeginForm("Authorise", "Login", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row h-100">
+                <div class="col my-auto">
+                    <!-- Horizontal login - Material Bootstrap 4 Card -->
+                    @*<div class="row">
+                            <div class="mx-auto">
+                                <div class="card" style="width: 480px;">
+                                    <h4 class="card-header login-title pt-2 pb-2 pl-3">Prognosis 2019</h4>
+                                    <div class="card-body mb-1 pt-2 pr-3 pb-0 pl-3 ">
+                                        <div class="text-danger my-1">@Html.DisplayFor(model => model.LoginErrorMsg)</div>
+                                        <form class="form">
+                                            <div class="row">
+                                                <div class="col-5 pr-0 pl-3">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon text-black-50"><i class="mdi mdi-account-outline lead"></i></span>
+                                                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @type = "text", @class = "form-control ml-1 pt-2", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                                    </div>
+                                                    <div class="input-group">
+                                                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger pl-4", @value = "" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-5 pr-0">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon text-black-50"><i class="mdi mdi-lock-outline lead"></i></span>
+                                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control ml-1 pt-2", @placeholder = "Password" } })
+                                                    </div>
+                                                    <div class="input-group">
+                                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger pl-4", @value = "" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-row d-none">
+                                                    @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                                                </div>
+
+                                                <div class="col-2">
+                                                    <button type="submit" class="btn btn-primary btn-raised mt-1 p-2" data-toggle="tooltip" title="Login">
+                                                        <i class="mdi mdi-login-variant mdi-24px"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-12 text-right mt-1 mb-2">
+                                                    <a class="small text-body font-weight-light text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D" data-toggle="tooltip" title="Mail to Admin">Forgotten password?</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <!-- Vertical login - Material Bootstrap 4 Card -->
+                    <div class="row">
+                        <div class="mx-auto">
+                            <div class="card" style="width: 350px;">
+                                <h4 class="card-header login-title pt-2 pb-2 pl-3">Prognosis 2019</h4>
+                                <div class="card-body mb-1 pt-0 pr-3 pb-2 pl-3 ">
+                                    <div class="text-danger mt-2">@Html.DisplayFor(model => model.LoginErrorMsg)</div>
+                                    <form class="form">
+                                        <div class="form-row">
+                                            <div class="input-group mt-2 mr-1 ml-1">
+                                                <span class="input-group-addon text-black-50 pt-1"><i class="mdi mdi-account-outline lead"></i></span>
+                                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @type = "text", @class = "form-control", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger pl-4", @value = "" })
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="input-group mt-3 mr-1 ml-1">
+                                                <span class="input-group-addon text-black-50 pt-1"><i class="mdi mdi-lock-outline lead"></i></span>
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type = "password", @class = "form-control", @placeholder = "Password" } })
+                                            </div>
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger pl-4", @value = "" })
+                                        </div>
+                                        <div class="form-row d-none">
+                                            @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                                        </div>
+
+                                        <div class="col-12 text-right mt-1 mb-2 pr-0">
+                                            <a class="small text-body font-weight-light text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D" data-toggle="tooltip" title="Mail to Admin">Forgotten password?</a>
+                                        </div>
+                                        <div class="form-row">
+                                            <button type="submit" class="btn btn-primary btn-block m-1" data-toggle="tooltip" title="Login"><i class="mdi mdi-login-variant mdi-18px"></i> Login </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Footer -->
+                    <div class="row">
+                        <div class="mx-auto text-center mt-1">
+                            <small class="text-white">
+                                © Information and Communication Technologies Division<br />
+                                Design and Development Department
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Page Footer -->
+    <div class="fixed-bottom p-0">
+        <h6 class="text-white text-center">
+            <img style="width: 10em;" src="~/Images/logoportal004.png" />
+        </h6>
+    </div>
+
+    @Scripts.Render("~/Login/js")
+</body>
+</html>

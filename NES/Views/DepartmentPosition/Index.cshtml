@@ -1,0 +1,212 @@
+﻿@model IEnumerable<NES.Models.Department_Position>
+
+@{
+    ViewBag.Title = "Department<>Position";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="d-flex border-bottom">
+        <div class="mr-3">
+            <button class="btn btn-link d-md-none tooltips icn-color mr-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+            <button class="btn btn-link tooltips pr-1 pl-0 py-0" accesskey="n" title="Add new Department &#9902; Position - Alt + Shift + N" onclick="location.href='@Url.Action("Create", "DepartmentPosition")'"><i class="mdi mdi-pencil-plus-outline mdi-36px"></i></button>
+        </div>
+        <div>
+            <h3 class="text-header ml-auto">Departments <i class="mdi mdi-set-center"></i> Positions Administration</h3>
+        </div>
+        <div class="ml-auto">
+            <button class="btn btn-link icn-color align-bottom ml-3 p-0" id="helpTooltip"><i class="mdi mdi-help"></i></button>
+        </div>
+    </div>
+
+    <!-- Page Body -->
+    <!-- Datatables Table Definition -->
+    <table class="table table-sm table-hover nowrap w-100" id="depPosTable">
+        <thead>
+            <tr class="text-nowrap">
+                <th>Department Name&nbsp;</th>
+                <th>Position Name&nbsp;</th>
+                <th class="disableReorder"></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    @section scripts {
+        <script type="text/javascript">
+        // Datatables
+        var dataTable;
+        $(document).ready(function () {
+            dataTable = $("#depPosTable").DataTable({
+                ajax: {
+                    url: "@Url.Action("GetDepPosData", "DepartmentPosition")",
+                    type: "GET",
+                    datatype: "json",
+                    error: function () {
+                        NProgress.done();
+                        alertify.alert('Data Retrieve Error!', '<b>Can\'t retrieve Department &#9902 Positions data! Refresh page later or inform your admin.</b>');
+                        $('.dataTables_empty').html('<span class="text-white bg-warning px-3 py-1">Data Error!</span>'); /* Display error on table too */
+                    }
+                },
+                dom: /* dom with flex + HTML toolbar at header + Sort toolbar at header */
+                    "<'d-flex pt-2'lB<'sortToolbar ml-auto'>f>" +
+                    "<'d-flex'tr>" +
+                    "<'d-flex mb-3'<'mr-3'i><'ml-auto'p>>",
+                columns: [
+                    { data: "DepartmentName",
+                        className: 'text-nowrap'
+                    },
+                    { data: "PositionName",
+                        className: 'text-nowrap'
+                    },
+                    { data: "PositionID",
+                        render: function (data, type, row) {
+                            var url = '@Url.Action("Edit", "DepartmentPosition")/' + row.DepPosID;
+                            return "<a href='" + url + "' class='btn btn-link btn-sm tooltips text-primary px-0' title='Edit Position'><i class='mdi mdi-pencil-outline mdi-18px'></i></a> ";
+                        },
+                        sortable: false,
+                        searchable: false,
+                        orderable: false
+                    }
+                ],
+                buttons: [
+                    // Export buttons in dropdown
+                    { extend: 'collection', className: 'btn btn-link tooltips shadow-none icn-color px-1 pt-0 pb-1', autoClose: true, text: '<span class="mdi mdi-table-arrow-right mdi-24px"></span>', titleAttr: 'Export to',
+                        buttons: [
+                            { extend: 'print', className: 'btn btn-link text-capitalize text-decoration-none shadow-none border-bottom p-2', text: '<span class="mdi mdi-printer mdi-18px icn-color mr-2"> Print</span>' },
+                            { extend: 'copy', className: 'btn btn-link text-capitalize text-decoration-none shadow-none border-bottom p-2', text: '<span class="mdi mdi-clipboard-outline mdi-18px icn-color mr-2"> Clipboard</span>' },
+                            { extend: 'csv', className: 'btn btn-link text-capitalize text-decoration-none shadow-none border-bottom p-2', text: '<span class="mdi mdi-file-document-outline mdi-18px icn-color mr-2"> CSV text</span>' },
+                            { extend: 'excel', className: 'btn btn-link text-capitalize text-decoration-none shadow-none border-bottom p-2', text: '<span class="mdi mdi-file-excel-box-outline mdi-18px icn-color mr-2"> Excel</span>' },
+                            { extend: 'pdf', className: 'btn btn-link text-capitalize text-decoration-none shadow-none p-2', text: '<span class="mdi mdi-file-pdf-box-outline mdi-18px icn-color mr-2"> PDF</span>' }
+                        ]
+                    }
+                ],
+                autoWidth: true,
+                autoFill: true,
+                processing: true,
+                deferRender: true,
+                async: true,
+                fixedHeader: true,
+                colReorder: true,
+                select: {
+                    info: false,
+                    style: 'single',
+                    selector: 'td:last-child'
+                },
+                stateSave: true,
+                pagingType: "full_numbers",
+                lengthMenu: [[10, 15, 25, 50, -1], ["10 rows\xa0", "15 rows\xa0", "25 rows\xa0", "50 rows\xa0", "All\xa0"]],
+                language: {
+                    emptyTable: "No data found! Please click on <b>Add New</b> Button.",
+                    info: "Prikazano _START_ - _END_ od _TOTAL_",
+                    infoEmpty: "0 - 0 od 0",
+                    infoFiltered: "(_MAX_ ukupno)",
+                    infoPostFix: "",
+                    infoThousands: ",",
+                    //lengthMenu: "Prikaži: _MENU_",
+                    lengthMenu: "_MENU_",
+                    loadingRecords: "Učitavanje...",
+                    processing: function () {
+                        NProgress.start();
+                    },
+                    searchPlaceholder: "Search all",
+                    //search: '<i class="mdi mdi-magnify text-black-50"></i>',
+                    search: "",
+                    zeroRecords: "Traženi podaci nisu pronađeni!",
+                    select: {
+                        rows: {
+                            _: "%d izabrano",
+                            0: "Nema izabranih",
+                            1: "1 izabran"
+                        }
+                    },
+                    paginate: {
+                        first: "<i class='mdi mdi-page-first'></i>",
+                        last: "<i class='mdi mdi-page-last'></i>",
+                        previous: "<i class='mdi mdi-chevron-left'></i>",
+                        next: "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                initComplete: function () {
+                    // Load progress done
+                    NProgress.done();
+
+                    // Add class to search field (fosus)
+                    $('div.dataTables_filter input').addClass('search-focus');
+
+                    // Focus to Search button
+                    $('.search-focus').focus();
+
+                    // Put search buttons in header - Clear global search
+                    $("div.sortToolbar").html(
+                        '<button class="btn btn-link tooltips icn-color shadow-none mt-2 p-0" accesskey="g" title="Clear global search - Alt + Shift + G" onclick="ResetSearch()"><i class="mdi mdi-magnify-minus-outline mdi-24px"></i></button>'
+                    );
+
+                    // Disable colReorder for Position Edit button
+                    $('.disableReorder').css({ pointerEvents: "none" });
+
+                    // Tooltipsters for dataTable
+                    $('.tooltips').tooltipster({
+                        delay: 500,
+                        distance: 2,
+                        theme: 'tooltipster-borderless'
+                    });
+                    $('.tooltips-warning').tooltipster({
+                        delay: 500,
+                        distance: 2,
+                        theme: ['tooltipster-borderless', 'tooltipster-borderless-warning']
+                    });
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+            });
+         });
+        // End Datatable
+
+        // Disable Position menu
+        $('#positionsLink').toggleClass("d-none");
+
+        // Table searsh reset
+        function ResetSearch() {
+            dataTable.search(' ');
+            dataTable.draw();
+            $('.search-focus').focus();
+        };
+
+        // Alertify settings
+        alertify.defaults.transition = "slide";
+        alertify.defaults.theme.ok = "btn btn-danger";
+        alertify.defaults.theme.cancel = "btn btn-primary";
+        alertify.defaults.theme.input = "form-control";
+        alertify.alert().set({ modal: true, movable: false, pinnable: false });
+
+        // Bottom header - appears in left bottom page corner
+        $(document).ready(function () {
+            $(document).on('scroll', function () {
+                var scrollDistance = $(this).scrollTop();
+                if (scrollDistance > 100) {
+                    $('.header-bottom').fadeIn();
+                } else {
+                    $('.header-bottom').fadeOut();
+                }
+            });
+
+            // Smooth scrolling using jQuery easing
+            $(document).on('click', 'a.header-bottom', function (e) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: ($($anchor.attr('href')).offset().top)
+                }, 1000, 'easeInOutExpo');
+                e.preventDefault();
+            });
+        });
+        </script>
+    }
+</body>
+</html>

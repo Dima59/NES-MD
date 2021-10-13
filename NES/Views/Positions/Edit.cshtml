@@ -1,0 +1,52 @@
+﻿<!-- Edit Positions -->
+
+@model NES.Models.Position
+
+@{
+    ViewBag.Title = "Edit Position";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="d-flex border-bottom">
+        <button class="btn btn-link d-md-none tooltips icn-color mr-3 mb-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+        <h3 class="text-header" style="width: 450px;">Edit Position</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal mx-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.PositionID)
+
+            <div class="form-label-group">
+                @*@Html.LabelFor(model => model.PositionName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+
+                @Html.EditorFor(model => model.PositionName, new { htmlAttributes = new { @class = "form-control", @id = "positionInput", @type = "text", @placeholder = "Position name", @autofocus = "autofocus" } })
+                <label for="positionInput" class="text-black-50">Position name</label>
+
+                @Html.ValidationMessageFor(model => model.PositionName, "", new { @class = "text-danger" })
+            </div>
+
+            @*<input type="submit" value="Save" class="btn btn-default" />*@
+            <button class="btn btn-primary btnSubmit btn-block tooltips" title="Save Organizational Unit data"><i class="mdi mdi-content-save-edit-outline mdi-18px"></i> Update</button>
+        </div>
+    }
+
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @*@Html.ActionLink("\u21A9", "Index", null, new { @class = "btn btn-link tooltips text-warning text-decoration-none", @title = "Back to list" })*@
+        @*<button class="btn btn-warning btn-circle btn-circle-sm tooltips ml-3" onclick="location.href='@Url.Action("Index", "Positions")'" title="Back to list"><i class="mdi mdi-keyboard-backspace"></i></button>*@
+        <button class="btn btn-link tooltips ml-3 p-0" onclick="location.href='@Url.Action("Index", "Positions")'" title="Back to list"><i class="mdi mdi-subdirectory-arrow-left text-warning mdi-18px"></i></button>
+    </div>
+</body>
+</html>

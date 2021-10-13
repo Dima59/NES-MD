@@ -1,0 +1,86 @@
+﻿/* Login - title color*/
+.login-title {
+    color: #C47A4D;
+}
+
+/* Form Control - height */
+.form-control {
+    height: 3.0rem;
+}
+
+/* Split page login */
+.login, .image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url('/Images/laptop-2.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+/* Login - page background */
+body {
+    background-color: #122836;
+    /*background-color: antiquewhite;*/
+    /*background-color: #1C4558;*/
+    /*background-color: #008080;*/
+    /*background-color: wheat;*/
+    /*background-color: #185A64;*/
+    /*background-color: #607D8B;*/
+    /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAAA1JREFUCNdjmMAAAhMABIgBIbS25/QAAAAASUVORK5CYII=);
+    opacity: .9;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';
+    filter: alpha(opacity=75);*/
+}
+
+/* Avatar image */
+.avatar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+}
+
+/* Title */
+.login-title {
+    color: #C47A4D;
+    font-weight: 300;
+}
+
+/* Form Control - height */
+.form-control {
+    height: 3.0rem;
+}
+
+/* Footer - bacground-color */
+.footer-background {
+    border-radius: 0px 0px 2px 2px;
+    background-color: #C47A4D;
+}
+
+/* Modal Width */
+.modal-width {
+    width: 370px;
+}
+
+/* Form - bottom margin */
+form {
+    margin-bottom: 0px;
+}
+
+/* Change field shadow on error */
+textarea.input-validation-error,
+textarea.form-control.input-validation-error,
+input.form-control.input-validation-error,
+input[type="text"].input-validation-error,
+input[type="password"].input-validation-error,
+input[type="email"].input-validation-error,
+input[type="number"].input-validation-error,
+[type="text"].form-control.input-validation-error,
+[type="password"].form-control.input-validation-error,
+[type="email"].form-control.input-validation-error,
+[type="tel"].form-control.input-validation-error,
+[contenteditable].form-control.input-validation-error {
+    box-shadow: inset 0 -2px 0 #f44336;
+}

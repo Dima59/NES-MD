@@ -1,0 +1,48 @@
+﻿<!-- Edit Departments -->
+
+@model NES.Models.Department
+
+@{
+    ViewBag.Title = "Edit Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="d-flex border-bottom">
+        <button class="btn btn-link d-md-none tooltips icn-color mr-3 mb-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+        <h3 class="text-header" style="width: 450px;">Edit Department</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal mx-3">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.DepartmentID)
+
+            <div class="form-label-group">
+                @Html.EditorFor(model => model.DepartmentName, new { htmlAttributes = new { @class = "form-control", @type = "text", @autofocus = "autofocus" } })
+                <label class="text-black-50">Department name</label>
+
+                @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+            </div>
+
+            @*<input type="submit" value="Save" class="btn btn-default" />*@
+            <button class="btn btn-primary btnSubmit btn-block tooltips" title="Save Department data"><i class="mdi mdi-content-save-edit-outline mdi-18px"></i> Update</button>
+        </div>
+    }
+
+    <div>
+        @*@Html.ActionLink("Back to List", "Index")*@
+        @Html.ActionLink("\u21A9", "Index", null, new { @class = "btn btn-link tooltips text-warning text-decoration-none", @title = "Back to list" })
+    </div>
+</body>
+</html>

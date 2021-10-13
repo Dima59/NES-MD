@@ -1,0 +1,867 @@
+﻿<!-- Users Administration -->
+
+@model NES.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Page Header -->
+<div class="d-flex border-bottom">
+    <div class="mr-3">
+        <!-- Sidebar Toggle Button for small viewport -->
+        <button class="btn btn-link d-md-none tooltips icn-color mr-1 p-0" id="sidebarToggleTop" title="Show/Hide Sidebar"><i class="mdi mdi-menu mdi-36px"></i></button>
+        <!-- Add New User Button -->
+        @*<button class="btn btn-primary tooltips p-1" title="Add new user" onclick="AddEditUser(0)"><i class="mdi mdi-account-plus-outline mdi-36px"></i></button>*@
+        <button class="btn btn-link tooltips pr-1 pl-0 py-0" accesskey="n" title="Add new user - Alt + Shift + N" onclick="AddEditUser(0)"><i class="mdi mdi-account-plus-outline mdi-36px"></i></button>
+        <!-- Search buttons  -->
+        @*<button class="btn btn-link tooltips icn-color p-1" id="search-plus" accesskey="d" title="Show search row - Alt + Shift + D" onclick="ToggleSearchRow()"><i class="mdi mdi-filter-plus-outline mdi-36px"></i></button>
+        <button class="btn btn-link tooltips icn-color display-none p-1" id="search-minus" accesskey="h" title="Hide search row - Alt + Shift + R" onclick="ToggleSearchRow()"><i class="mdi mdi-filter-remove-outline mdi-36px"></i></button>
+        <button class="btn btn-link tooltips icn-color p-1" accesskey="a" title="Clear ALL search - Alt + Shift + A" onclick="ResetAllSearch()"><i class="mdi mdi-filter-off mdi-36px"></i></button>
+        <button class="btn btn-link tooltips icn-color p-1" accesskey="g" title="Clear global search - Alt + Shift + G" onclick="ResetSearch()"><i class="mdi mdi-filter-off-outline mdi-36px"></i></button>*@
+    </div>
+    <!-- Header -->
+    <div><h3 class="text-header">Users administration</h3></div>
+    <!-- Help Button -->
+    <div class="ml-auto p-0">
+        <button class="btn btn-link icn-color p-0" id="helpTooltip"><i class="mdi mdi-help mdi-18px"></i></button>
+    </div>
+</div>
+
+<!-- Page Body -->
+<!-- Datatables Table Definition -->
+<table class="table table-sm table-hover nowrap w-100" id="userTable">
+    <thead>
+        <tr class="text-nowrap">
+            <th class="disableReorder"></th>
+            <th>User name&nbsp;</th>
+            @*<th>Password&nbsp;</th>*@
+            <th>First name&nbsp;</th>
+            <th>Last name&nbsp;</th>
+            <th>Note&nbsp;</th>
+            <th>Role&nbsp;</th>
+            <th>Date Created&nbsp;</th>
+            <th>Active?&nbsp;</th>
+            <th>Gender&nbsp;</th>
+            <th>Org. Unit&nbsp;</th>
+            <th>Department&nbsp;</th>
+            <th>Position&nbsp;</th>
+            <th class="disableReorder"></th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot>
+        <tr class="display-none" id="search-row">
+            <th></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            @*<th><input class="form-control form-control-sm" type="text" placeholder="Search row"></th>*@
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th></th>
+            <th></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th><input class="form-control form-control-sm" type="text" placeholder="Search..."></th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<!-- User Add/Edit Modal -->
+<div class="modal fade" id="userModal" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header pt-3 pb-1">
+                <h4 class="text-header" id="userTitle"></h4>
+                <!-- Close Modal Button -->
+                @*<a href="#" class="close tooltips-warning text-danger pt-3" onclick="btnCloseUserModal($('#UserName').val())" title="Close Form & LOST CHANGES!!!">&times;</a>*@
+                <button class="close tooltips-warning text-danger pt-3" onclick="btnCloseUserModal($('#UserName').val())" title="Close Form & LOST CHANGES!!!">&times;</button>
+                @*<button class="close tooltips-warning text-danger pt-3" onclick="btnCloseUserModal($('#UserName').val())" title="Close Form & LOST CHANGES!!!"><i class="mdi mdi-lose-circle-outline mdi-24px"></i></button>*@
+                @*<button class="btn btn-warning tooltips-warning mt-0 p-1" onclick="btnCloseUserModal($('#UserName').val())" title="Close Form & LOST CHANGES!!!"><i class="mdi mdi-close mdi-24px"></i></button>*@
+            </div>
+            <div class="modal-body pt-0 px-3" id="userModalBody">
+                <!-- < Add/Edit Form > -->
+            </div>
+            <div class="modal-footer p-0">
+                <!-- Submit Modal Data Button -->
+                <button class="btn btn-primary btnSubmit btn-block tooltips m-0 p-3" id="btnUpdate" accesskey="u" title="Update user data - Alt + Shift + U"><span class="mdi mdi-account-check mdi-18px"></span> Update</button>
+                @*<button class="btn btn-warning btn-block btnSubmit tooltips-warning m-0 py-3" style="width: 140px;" title="Close Form & LOST CHANGES!!!"><span class="mdi mdi-account-off-outline mdi-18px"></span> Discard</button>*@
+                <button class="btn btn-primary btnSubmit btn-block tooltips m-0 p-3" id="btnAdd" accesskey="s" title="Save new user data - Alt + Shift + S"><i class="mdi mdi-account-plus mdi-18px"></i> Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Details Modal -->
+<div class="modal fade" id="userDetailsModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class=" mx-3 pt-3 pb-0">
+                <h4 class="text-header" id="userDetailsTitle">User Details</h4>
+            </div>
+            <div class="modal-body pt-1" id="userDetailsModalBody">
+                <!-- User Details Form -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bottom header -->
+@*<a class="header-bottom bg-header-bottom text-nowrap lead">Users administration</a>*@
+<a class="header-bottom bg-header-bottom text-nowrap lead mb-3 px-3">Users administration</a>
+
+
+@section scripts {
+    <script type="text/javascript">
+        // Datatables
+        var dataTable;
+        $(document).ready(function () {
+            dataTable = $("#userTable").DataTable({
+                ajax: {
+                    url: "@Url.Action("GetUsersData", "User")",
+                    type: "GET",
+                    datatype: "json",
+                    error: function () {
+                        NProgress.done();
+                        alertify.alert('Data Retrieve Error!', '<b>Can\'t retrieve users data! Refresh page later or inform your admin.</b>');
+                        $('.dataTables_empty').html('<span class="text-white bg-danger px-3 py-1">Data Error!</span>'); /* Display error on table too */
+                    }
+                },
+                dom: /*'lfrtipB',*/
+
+                    /* dom with rows & columns - Sort buttons can be in page header too */
+                    //"<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                    //"<'row'<'col-sm-12'tr>>" +
+                    //"<'row'<'col-sm-12 col-md-6 mt-1'i><'col-sm-12 col-md-6'p>>" +
+                    //"<'row mb-3'<'col mt-2'B><'sortToolbar col-auto'>>",
+
+                    /* dom with flex */
+                    //"<'d-flex'<'mr-1'l><'ml-auto'f>>" +
+                    //"<'d-flex'tr>" +
+                    //"<'d-flex'<'mr-1'i><'ml-auto'p>>" +
+                    //"<'d-flex mb-3'<'mt-2'B><'sortToolbar mr-auto'>>",
+
+                    /* dom with flex + HTML toolbar at footer + Sort toolbar at header */
+                    //"<'d-flex mt-2'<'mr-1'l><'sortToolbar ml-auto'>f>" +
+                    //"<'d-flex'tr>" +
+                    //"<'d-flex mb-3'<'mr-1'i><'ml-auto'p>>" +
+                    //"B",
+
+                    /* dom with flex + HTML toolbar at header + Sort toolbar at header */
+                    "<'d-flex pt-2'lB<'searchRow ml-auto'>f<'searchReset'>>" +
+                    "<'d-flex'tr>" +
+                    "<'d-flex mb-3'<'mr-3'i><'ml-auto'p>>",
+                columns: [
+                    { data: "UserID",
+                        render: function (data, type, row) {
+                            return "<button class='btn btn-link btn-sm tooltips text-primary px-0' title='User details' onclick=UserDetails(\"" + row.UserID + "\",\"" + row.UserName + "\")><i class='mdi mdi-plus-circle-outline mdi-18px'></i></button>"
+                            //return "<button class='btn btn-link btn-sm tooltips text-primary px-0' title='User details' onclick=UserDetails(\"" + row.UserID + "\",\"" + row.UserName + "\")><i class='mdi mdi-account-details-outline mdi-18px'></i></button>"
+                            //return "<button class='btn btn-link btn-sm tooltips-shadow text-primary px-0' data-tooltip-content='#userDetails' onmouseover=UserDetails(\"" + row.UserID + "\",\"" + row.UserName + "\")><i class='mdi mdi-plus-circle-outline mdi-18px'></i></button>"
+                        },
+                        className: 'noColVis',
+                        sortable: false,
+                        searchable: false,
+                        orderable: false
+                    },
+                    { data: "UserName",
+                        className: 'noColVis'
+                    },
+                    //{ data: "Password", class: 'password-display' },
+                    { data: "FirstName" },
+                    { data: "LastName" },
+                    { data: "Note",
+                        className: 'text-nowrap',
+                        visible: false
+                    },
+                    { data: "RoleName",
+                        className: 'text-nowrap noColVis'
+                    },
+                    { data: "DateCreated",
+                        render: function (data) {
+                            if (data != null) {
+                                return moment(data).format('DD.MM.YYYY');
+                            }
+                            else {
+                                //return "<i class='mdi mdi-minus mdi-18px d-flex justify-content-center mdi-dark mdi-inactive mr-5'></i>";
+                                //return "<span class='text-black-50'>00.00.0000</span>";
+                                return "";
+                            }
+                        }
+                    },
+                    { data: "IsActivated",
+                        render: function (data) {
+                            if (data) {
+                                //return "<i class='mdi mdi-checkbox-marked-circle-outline mdi-18px d-flex justify-content-center text-success mr-3'></i>";
+                                //return "<span class='badge badge-success d-flex justify-content-center mr-3'>Active</span>";
+                                //return "<i class='mdi mdi-checkbox-marked-outline mdi-18px d-flex justify-content-center text-success mr-3'></i>";
+                                return "<i class='mdi mdi-check mdi-18px d-flex justify-content-center text-success mr-3'></i>";
+                            }
+                            else {
+                                // Space enables sorting!
+                                //return "<i class='mdi mdi-cancel mdi-flip-h mdi-18px mdi-inactive d-flex justify-content-center text-warning mr-3'> </i>";
+                                //return "<span class='badge badge-warning d-flex justify-content-center mr-3'>Inactive</span>";
+                                //return "<i class='mdi mdi-checkbox-blank-outline mdi-18px mdi-inactive d-flex justify-content-center text-warning mr-3'> </i>";
+                                return " ";
+                            }
+                        },
+                        className: 'text-nowrap noColVis',
+                    },
+                    { data: "Gender",
+                        render: function (data, type, row) {
+                            if (row.Gender == "Male      ") {
+                                return "<i class='mdi mdi-gender-male mdi-18px d-flex justify-content-center text-info mr-3'></i>";
+                            }
+                            else if (row.Gender == "Female    ") {
+                                // Space enables sorting!
+                                return "<i class='mdi mdi-gender-female mdi-18px d-flex justify-content-center text-warning mr-3'> </i>";
+                            }
+                            return "  ";
+                        },
+                        visible: false
+                    },
+                    { data: "OrgUnitName",
+                        className: 'text-nowrap',
+                        visible: false
+                    },
+                    { data: "DepartmentName",
+                        className: 'text-nowrap',
+                        visible: false
+                    },
+                    { data: "PositionName",
+                        className: 'text-nowrap',
+                        visible: false
+                    },
+                    { data: "UserID",
+                        render: function (data, type, row) {
+                            return "<button class='btn btn-link btn-sm tooltips text-warning mr-2 px-0' title='Delete user' onclick=DeleteUser(\"" + row.UserID + "\",\"" + row.UserName + "\",\"" + row.RoleName + "\")><span class='mdi mdi-trash-can-outline mdi-18px'></span></button>" +
+                                   "<button class='btn btn-link btn-sm tooltips text-primary px-0' title='Edit user' onclick=AddEditUser(\"" + row.UserID + "\",\"" + row.UserName + "\")><i class='mdi mdi-pencil-outline mdi-18px'></i></button>"
+                        },
+                        className: 'noColVis',
+                        sortable: false,
+                        searchable: false,
+                        orderable: false
+                    }
+                ],
+
+
+                //fnDrawCallback: function (oSettings) {
+                //    //$("#datatable_status").select2();
+                //    //$(".dataTables_length select").select2();
+                //    //$(".userTable_length select").select2();
+                //    //$(".dropdown-item select").select2();
+                //},
+
+
+                //buttons: [
+                //    'copy', 'csv', 'excel', 'pdf', 'print',
+                //],
+                buttons: [
+                    //{
+                    // className: 'btn btn-link tooltips',
+                    //    text: '<span class="mdi mdi-account-plus-outline mdi-24px text-primary"></span>',
+                    //    titleAttr: 'Add new user',
+                    //    action: function () {
+                    //        AddEditUser(0); // Add new user
+                    //    }
+                    //},
+
+                    // Select columns dropdown
+                    { extend: 'colvis', columns: ':not(.noColVis)', className: 'btn btn-link tooltips icn-color shadow-none pt-0 pr-0 pb-1 pl-1', text: '<span class="mdi mdi-view-column-outline mdi-24px"></span>', titleAttr: 'Select columns' },
+
+                     //Columns view buttons
+                    //{ className: 'btn btn-link tooltips', text: '<span class="mdi mdi-table-refresh mdi-24px icn-color p-0"></span>', titleAttr: 'Default columns view',
+                    //    action: function () {
+                    //        DefaultColumnsView();
+                    //    }
+                    //},
+                    //{ className: 'btn btn-link tooltips', text: '<span class="mdi mdi-table mdi-24px icn-color p-0"></span>', titleAttr: 'Minimal columns view',
+                    //    action: function () {
+                    //        MinimalColumnsView();
+                    //    }
+                    //},
+                    //{
+                    //    className: 'btn btn-link tooltips', text: '<span class="mdi mdi-table-large mdi-24px icn-color p-0"></span>', titleAttr: 'All columns view',
+                    //    action: function () {
+                    //        AllColumnsVew();
+                    //    }
+                    //},
+
+                    //Columns view buttons in dropdown
+                    {
+                        extend: 'collection', className: 'btn btn-link tooltips shadow-none icn-color px-0 pt-0 pb-1', autoClose: true, text: '<span class="mdi mdi-table-eye mdi-24px"></span>', titleAttr: 'Columns view',
+                        buttons: [
+                            {
+                                text: '<span class="d-flex mdi mdi-table-refresh mdi-18px icn-color item-mouse-over"> Default</span>',
+                                action: function () {
+                                    DefaultColumnsView();
+                                }
+                            },
+                            {
+                                text: '<span class="d-flex mdi mdi-table-alert mdi-18px icn-color item-mouse-over"> Important</span>',
+                                action: function () {
+                                    ImportantColumnsView();
+                                }
+                            },
+                            {
+                                text: '<span class="d-flex mdi mdi-table mdi-18px icn-color item-mouse-over"> Minimal</span>',
+                                action: function () {
+                                    MinimalColumnsView();
+                                }
+                            },
+                            {
+                                text: '<span class="d-flex mdi mdi-table-large mdi-18px icn-color item-mouse-over"> All</span>',
+                                action: function () {
+                                    AllColumnsVew();
+                                }
+                            },
+                        ]
+                    },
+
+                    //// Export buttons
+                    //{ extend: 'print', className: 'btn btn-link tooltips', text: '<span class="mdi mdi-printer mdi-24px icn-color"></span>', titleAttr: 'Print' },
+                    //{ extend: 'copy', className: 'btn btn-link tooltips', text: '<span class="mdi mdi-clipboard-outline mdi-24px icn-color"></span>', titleAttr: 'Copy To Clipboard' },
+                    //{ extend: 'csv', className: 'btn btn-link tooltips', text: '<span class="mdi mdi-file-document-outline mdi-24px icn-color"></span>', titleAttr: 'Export To CSV' },
+                    //{ extend: 'excel', className: 'btn btn-link tooltips', text: '<span class="mdi mdi-file-excel-box-outline mdi-24px icn-color"></span>', titleAttr: 'Export To Excel' },
+                    //{ extend: 'pdf', className: 'btn btn-link tooltips', text: '<span class="mdi mdi-file-pdf-box-outline mdi-24px icn-color"></span>', titleAttr: 'Export To PDF' }
+
+                    // Export buttons in dropdown
+                    {
+                        extend: 'collection', className: 'btn btn-link tooltips shadow-none icn-color px-0 pt-0 pb-1', autoClose: true, text: '<span class="mdi mdi-table-arrow-right mdi-24px"></span>', titleAttr: 'Export to',
+                        buttons: [
+                            { extend: 'print', text: '<span class="d-flex mdi mdi-printer mdi-18px icn-color item-mouse-over"> Print</span>' },
+                            { extend: 'copy', text: '<span class="d-flex mdi mdi-clipboard-outline mdi-18px icn-color item-mouse-over"> Clipboard</span>' },
+                            { extend: 'csv', text: '<span class="d-flex mdi mdi-file-document-outline mdi-18px icn-color item-mouse-over"> CSV text</span>' },
+                            { extend: 'excel', text: '<span class="d-flex mdi mdi-file-excel-box-outline mdi-18px icn-color item-mouse-over"> Excel</span>' },
+                            { extend: 'pdf', text: '<span class="d-flex mdi mdi-file-pdf-box-outline mdi-18px icn-color item-mouse-over"> PDF</span>' }
+                        ]
+                    }
+                ],
+                //order: [[1, 'asc']], // colide with state save
+                // Enable RegEx search
+                //search: {
+                //    regex: true,
+                //    smart: false
+                //},
+                //searching: false,
+                // For severSide: uncomment serverSide scrollY scroller, set fixedHeader to false.
+                //serverSide: true,
+                //scrollY: 700,
+                //scrollX: true,
+                //scrollCollapse: true,
+                //fixedColumns:   {
+                //    leftColumns: 1
+                //},
+                //scroller: {
+                //    loadingIndicator: true
+                //},
+                //responsive: true,
+                //error: HandleAjaxError, // err function call
+                //serverSide: true,
+                //keys: true,
+                autoWidth: true,
+                autoFill: true,
+                processing: true,
+                deferRender: true,
+                async: true,
+                fixedHeader: true,
+                colReorder: true,
+                select: {
+                    info: false,
+                    style: 'single',
+                    selector: 'td:last-child'
+                },
+                stateSave: true,
+                //stateDuration: 60 * 60 * 24, // sec * min * hour
+                //paging: false,
+                pagingType: "full_numbers",
+                //lengthMenu: [[10, 15, 25, 50, -1], ["10 rows\xa0", "15 rows\xa0", "25 rows\xa0", "50 rows\xa0", "All\xa0"]],
+                language: {
+                    emptyTable: "No data found! Please click on <b>Add New</b> Button.",
+                    zeroRecords: "No matching records found",
+                    info: "Prikazano _START_ - _END_ od _TOTAL_",
+                    infoEmpty: "0 - 0 od 0",
+                    infoFiltered: "(_MAX_ ukupno)",
+                    infoPostFix: "",
+                    infoThousands: ",",
+                    //lengthMenu: "Prikaži: _MENU_",
+                    //lengthMenu: "_MENU_",
+                    lengthMenu: '<select class="select2-length-single" style="width: 100%;">' +
+                                    '<option value="10">10 rows</option>' +
+                                    '<option value="15">15 rows</option>' +
+                                    '<option value="25">25 rows</option>' +
+                                    '<option value="50">50 rows</option>' +
+                                    '<option value="-1">All</option>' +
+                                '</select>',
+                    loadingRecords: "Učitavanje...",
+                    processing: function () {
+                        NProgress.start();
+                    },
+                    searchPlaceholder: "Search all",
+                    //search: '<i class="mdi mdi-magnify text-black-50"></i>',
+                    search: "",
+                    zeroRecords: "Traženi podaci nisu pronađeni!",
+                    select: {
+                        rows: {
+                            _: "%d izabrano",
+                            0: "Nema izabranih",
+                            1: "1 izabran"
+                        }
+                    },
+                    paginate: {
+                        first: "<i class='mdi mdi-page-first'></i>",
+                        last: "<i class='mdi mdi-page-last'></i>",
+                        previous: "<i class='mdi mdi-chevron-left'></i>",
+                        next: "<i class='mdi mdi-chevron-right'></i>"
+                    }
+                },
+                initComplete: function () {
+                    // Load progress done
+                    NProgress.done();
+
+                    // Simulate click on User Name to sort table by it
+                    //$('.UserName').click();
+
+                    // Add class to search field (fosus)
+                    $('div.dataTables_filter input').addClass('search-focus');
+
+                    // Focus to Search button
+                    $('.search-focus').focus();
+
+                    // Disable colReorder for User details, delete & edit buttons
+                    $('.disableReorder').css({ pointerEvents: "none" });
+
+                    // Move search fields from footer to header (move footer to header)
+                    $('#userTable tfoot tr').appendTo('#userTable thead');
+
+                    // Apply the column search
+                    dataTable.columns().every(function () {
+                        var that = this;
+                        // Search on every keystroke
+                        $('input', this.footer()).on('keyup change clear', function () {
+                            if (that.search() !== this.value) {
+                                that
+                                    .search(this.value)
+                                    .draw();
+                            }
+                        });
+
+                        // Search on 'Enter' pressed
+                        //$('input', this.footer()).on('keydown', function (e) {
+                        //    if (e.keyCode == 9 || e.keyCode == 13) {
+                        //        if (that.search() !== this.value) {
+                        //            that
+                        //                .search(this.value)
+                        //                .draw();
+                        //        }
+                        //    }
+                        //});
+                    });
+
+                    // Put search buttons in Datatable header - Display search row, Clear ALL search & Clear global search
+                    $("div.searchRow").html(
+                        '<div class="btn-group mt-2 ml-3" role="group">' +
+                            '<button class="btn btn-link tooltips icn-color shadow-none p-0" id="search-plus" accesskey="d" title="Show search row - Alt + Shift + D" onclick="ToggleSearchRow()"><i class="mdi mdi-filter-plus-outline mdi-24px"></i></button>' +
+                            '<button class="btn btn-link tooltips icn-color shadow-none display-none p-0" id="search-minus" accesskey="h" title="Hide search row - Alt + Shift + R" onclick="ToggleSearchRow()"><i class="mdi mdi-filter-remove-outline mdi-24px"></i></button>' +
+                            '<button class="btn btn-link tooltips icn-color shadow-none p-0" accesskey="a" title="Clear ALL search - Alt + Shift + A" onclick="ResetAllSearch()"><i class="mdi mdi-filter-off mdi-24px"></i></button>' +
+                            //'<button class="btn btn-link tooltips icn-color shadow-none p-0" accesskey="g"  title="Clear global search - Alt + Shift + G" onclick="ResetSearch()"><i class="mdi mdi-filter-off-outline mdi-24px"></i></button>' +
+                        '</div>'
+                    );
+
+                    $("div.searchReset").html(
+                        '<div class="btn-group mt-2 ml-0" role="group">' +
+                            '<button class="btn btn-link tooltips icn-color shadow-none p-0" accesskey="g"  title="Clear global search - Alt + Shift + G" onclick="ResetSearch()"><i class="mdi mdi-filter-off-outline mdi-24px"></i></button>' +
+                        '</div>'
+                    );
+
+                    // Tooltipsters for dataTable
+                    $('.tooltips').tooltipster({
+                        delay: 500,
+                        distance: 2,
+                        theme: 'tooltipster-borderless'
+                    });
+                    $('.tooltips-warning').tooltipster({
+                        delay: 500,
+                        distance: 2,
+                        theme: ['tooltipster-borderless', 'tooltipster-borderless-warning']
+                    });
+                    $('[data-toggle="tooltip"]').tooltip();
+                }
+            });
+         });
+        // End Datatable
+
+        // Disable User menu
+        $('#usersAdministrationHeading').toggleClass("d-none");
+        $('#usersAdministrationLink').toggleClass("d-none");
+
+        // Reset Datatable to default view
+        function DefaultColumnsView() {
+            dataTable.columns([1, 2, 3, 5, 6, 7]).visible(true);
+            dataTable.columns([4, 8, 9, 10, 11]).visible(false);
+            dataTable.page.len(10).draw();
+            dataTable.order([1, 'asc']).draw();
+            //ResetAllSearch();
+            //table.columns.adjust().draw();
+        }
+
+        // Show important columns
+        function ImportantColumnsView() {
+            dataTable.columns([1, 2, 3, 5, 6, 7, 9, 10, 11]).visible(true);
+            dataTable.columns([4, 8]).visible(false);
+            //table.order([1, 'asc']).draw();
+            //table.columns.adjust().draw();
+        }
+
+        // Show all columns
+        function AllColumnsVew() {
+            dataTable.columns([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).visible(true);
+            //table.columns.adjust().draw();
+        }
+
+        // Show only required columns
+        function MinimalColumnsView() {
+            dataTable.columns([1, 5, 7]).visible(true);
+            dataTable.columns([2, 3, 4, 6, 8, 9, 10, 11]).visible(false);
+            //table.columns.adjust().draw();
+        }
+
+        // Toggle search row
+        function ToggleSearchRow() {
+            $('#search-row').toggle();
+            $('#search-plus').toggle();
+            $('#search-minus').toggle();
+        };
+
+        // Table all search reset
+        function ResetAllSearch() {
+            dataTable.columns().search(' ');
+            dataTable.search(' ');
+            location.reload(true);
+            dataTable.draw();
+            $('.search-focus').focus();
+        };
+
+        // Table searsh reset
+        function ResetSearch() {
+            dataTable.search(' ');
+            dataTable.draw();
+            $('.search-focus').focus();
+        };
+
+        // Add/Edit User Modal
+        function AddEditUser(id, name) {
+            NProgress.start();
+            //var url = "/User/AddEditUser?UserID=" + UserId;
+            var url = "@Url.Action("AddEditUser", "User")" + "?UserID=" + id;
+            if (id > 0) {
+                $(userModalBody).load(url, function (responseText, textStatus, req) {
+                    NProgress.done();
+                    if (textStatus != "error") {
+                        $(userModal).modal("show");
+                        $('#UserName').prop("readonly", true);
+                        $('#userTitle').text("Edit user \"" + name + "\"");
+                        $('#btnUpdate').show();
+                        $('#btnAdd').hide();
+
+                        $('#userModal').on('shown.bs.modal', function () {
+                            $('#Password').focus();
+                            //$('#DateCreated').datetimepicker('useCurrent', false);
+                        });
+                    } else {
+                        alertify.alert("User Edit Error!", "<b>Can\'t retrieve selected user data! Try later or inform your admin.</b>");
+                    }
+                });
+            }
+            else {
+                $(userModalBody).load(url, function (responseText, textStatus, req) {
+                    NProgress.done();
+                    if (textStatus != "error") {
+                        $(userModal).modal("show");
+                        $('#userTitle').text("Add New User");
+                        $('#btnUpdate').hide();
+                        $('#btnAdd').show();
+                        $("input[id='male'][value='Male']").prop("checked", false);
+                        $("input[id='female'][value='Female']").prop("checked", false);
+
+                        $('#userModal').on('shown.bs.modal', function () {
+                            $('#UserName').focus();
+                            //$('#DateCreated').datetimepicker('useCurrent', true);
+                        });
+                    } else {
+                        alertify.alert("User Add Error!", "<b>Can\'t show Add new user form! Try later or inform your admin.</b>");
+                    }
+
+                });
+            }
+        };
+
+        // Add/Edit Modal Submit Button Click
+        $(document).ready(function () {
+            $('.btnSubmit').click(function () {
+                var departmentId = $('#department').val();
+                var positionId = $('#position').val();
+                if (departmentId == 0) {
+                    $('#department').val(null);
+                }
+                if (positionId == 0) {
+                    $('#position').val(null);
+                }
+                $.validator.unobtrusive.parse('#userAddEditForm');
+                if ($('#userAddEditForm').valid()) {
+                    NProgress.start();
+                    var data = $('#userAddEditForm').serialize();
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("Index", "User")',
+                        //dataType: 'html',
+                        data: data,
+                        success: function () {
+                            NProgress.done();
+                            $('#userModal').modal("hide");
+                            dataTable.ajax.reload();
+                            alertify.success("User added/updated successfuly!");
+                            //window.location.reload();
+                            //window.location.href = '@Url.Action("Index", "User")';
+                        },
+                        //error: function () {
+                        //    NProgress.done();
+                        //    alertify.alert('Save User Error!', '<b>Can\'t save user!<br />Try again later, check network connection or get help from Admin.</b>');
+                        //}
+                        statusCode: {
+                            // HttpStatusCode.RequestTimeout
+                            408: function () {
+                                NProgress.done();
+                                alertify.alert('Save User Error!', '<b>Can\'t save user!<br />Try again later, check network connection or get help from Admin.</b>');
+                            },
+                            // HttpStatusCode.Conflict
+                            409: function () {
+                                NProgress.done();
+                                alertify.alert('Save User Error!', '<b>Username isn\'t avialable!. Try another user name.</b>');
+                            }
+                        }
+                    })
+                }
+            })
+        });
+
+        // Add/Edit Close Modal button confirmation
+        function btnCloseUserModal(name) {
+            alertify.confirm().set({
+                modal: true,
+                movable: false,
+                pinnable: false,
+                defaultFocus: 'cancel',
+                labels: {
+                    ok: '<span class="mdi mdi-account-off"></span> Discard Changes ',
+                    cancel: '<span class="mdi mdi-account-edit-outline"></span> Continue '
+                }
+            });
+            if (name?.trim().length > 0) {
+                var headerText = "Cancel\xa0edit user \"" + name + "\"";
+                var bodyText = "Do You really want to discard changes and lost entered data?";
+            } else {
+                var headerText = "Cancel Add New User";
+                var bodyText = "Do You really want to cancel editing and lost changed data?";
+            }
+            //alertify.confirm('Abandon Edit \"' + name + '\"', 'Do You really want to cancel User editing and lost changed data?',
+            alertify.confirm(headerText, bodyText,
+                function () {
+                    $('#userModal').modal("hide");
+                    dataTable.rows('.selected').deselect();
+                    alertify.message("User Add/Edit canceled!");
+                    alertify.error("Changed form data were lost!");
+                },
+                function () {
+                    alertify.message("Editing is continued.")
+                }
+            );
+        }
+
+        // User Details Modal
+        function UserDetails(id, name) {
+            NProgress.start();
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("UserDetails", "User")',
+                dataType: 'html',
+                data: { UserID: id },
+                success: function (response) {
+                    NProgress.done();
+                    $('#userDetailsModalBody').html(response);
+                    $('#userDetailsModal').modal("show");
+                    //$('.modal-backdrop').removeClass("modal-backdrop");
+                    $('#userDetailsTitle').text("\"" + name + "\" Details");
+                },
+                error: function () {
+                    NProgress.done();
+                    alertify.alert("User Details Error!", "<b>Can\'t retrieve selected user data! Refresh page later or inform your admin.</b>");
+                }
+            });
+        };
+
+        // Delete User Alert Form
+        function DeleteUser(id, name, role) {
+            if (role == "Administrator") {
+                alertify.error("\"" + role + "\" can't be deleted!");
+                alertify.message("\"" + name + "\" deletion canceled!");
+            }
+            else {
+                alertify.confirm().set({
+                    modal: true,
+                    movable: false,
+                    pinnable: false,
+                    defaultFocus: 'cancel',
+                    labels: {
+                        ok: '<span class="mdi mdi-account-off"></span> Delete ',
+                        cancel: '<span class="mdi mdi-cancel"></span> Cancel '
+                    }
+                });
+                alertify.confirm(
+                    "Delete \"" + name + "\"?",
+                    "Are Yoy sure to delete this user?",
+                    function () {
+                        NProgress.start();
+                        $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("DeleteUser", "User")/' + id,
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.success)
+                                {
+                                    NProgress.done();
+                                    dataTable.ajax.reload();
+                                    alertify.success("\"" + name + "\" deleted successfuly!");
+                                }
+                            },
+                            error: function () {
+                                NProgress.done();
+                                alertify.alert("Delete User Error!", "<b>Can't delete selected user! Refresh page later or inform your Admin.</b>");
+                            }
+                        });
+                    },
+                    function () {
+                        dataTable.rows('.selected').deselect();
+                        alertify.message("\"" + name + "\" deletion canceled!");
+                    }
+                );
+            }
+        };
+
+        // Alertify settings
+        alertify.defaults.transition = "slide";
+        alertify.defaults.theme.ok = "btn btn-danger";
+        alertify.defaults.theme.cancel = "btn btn-primary";
+        alertify.defaults.theme.input = "form-control";
+        alertify.alert().set({ modal: true, movable: false, pinnable: false });
+
+        // Fill Department Dropdown
+        function OrgUnitChanged() {
+            var id = $('#OrgUnitID').val();
+            if (id > 0) {
+                $("#DepartmentID").empty();
+                $("#DepartmentID").append("<option value='0'>Select Department</option>");
+                $("#DepartmentID").prop("disabled", false);
+                $("#PositionID").empty();
+                $("#PositionID").prop("disabled", true);
+                $("#PositionID").append("<option value='0'>Select Position</option>");
+                var url = '@Url.Action("FillDepartments", "User")';
+                NProgress.start();
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: 'json',
+                    data: { OrgUnitID: id },
+                    success: function (data) {
+                        NProgress.done();
+                        //$("#DepartmentID").empty();
+                        //$("#DepartmentID").append("<option value='0'>Select Department</option>");
+                        $.each(data, function (index, optiondata) {
+                            $("#DepartmentID").append("<option value='" + optiondata.DepartmentID + "'>" + optiondata.DepartmentName + "</option>");
+                        });
+                    },
+                    error: function () {
+                        NProgress.done();
+                        $("#DepartmentID").prop("disabled", true);
+                        alertify.alert("Department Data Error!", "<b>Can't populate dropdown! Refresh page later or inform your Admin.</b>");
+                    }
+                })
+            }
+            else {
+                $("#DepartmentID").empty();
+                $("#DepartmentID").append("<option value='0'>Select Department</option>");
+                $("#DepartmentID").prop("disabled", true);
+                $("#PositionID").empty();
+                $("#PositionID").append("<option value='0'>Select Position</option>");
+                $("#PositionID").prop("disabled", true);
+            }
+        };
+
+        // Fill Position Dropdown
+        function DepartmentChanged() {
+            var id = $('#DepartmentID').val();
+            if (id > 0) {
+                $("#PositionID").empty();
+                $("#PositionID").append("<option value='0'>Select Position</option>");
+                $("#PositionID").prop("disabled", false);
+                var url = '@Url.Action("FillPositions", "User")';
+                NProgress.start();
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    dataType: 'json',
+                    data: { DepartmentID: id },
+                    success: function (data) {
+                        NProgress.done();
+                        //$("#PositionID").empty();
+                        //$("#PositionID").append("<option value='0'>Select Position</option>");
+                        $.each(data, function (index, optiondata) {
+                            $("#PositionID").append("<option value='" + optiondata.PositionID + "'>" + optiondata.PositionName + "</option>");
+                        });
+                    },
+                    error: function () {
+                        NProgress.done();
+                        $("#PositionID").prop("disabled", true);
+                        alertify.alert("Position Data Error!", "<b>Can't populate dropdown! Refresh page later or inform your Admin.</b>");
+                    }
+                })
+            }
+            else {
+                $("#PositionID").empty();
+                $("#PositionID").append("<option value='0'>Select Position</option>");
+                $("#PositionID").prop("disabled", true);
+            }
+        };
+
+        // Bottom header - appears in left bottom page corner
+        $(document).ready(function () {
+            $(document).on('scroll', function () {
+                var scrollDistance = $(this).scrollTop();
+                if (scrollDistance > 100) {
+                    $('.header-bottom').fadeIn();
+                } else {
+                    $('.header-bottom').fadeOut();
+                }
+            });
+
+            // Smooth scrolling using jQuery easing
+            $(document).on('click', 'a.header-bottom', function (e) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: ($($anchor.attr('href')).offset().top)
+                }, 1000, 'easeInOutExpo');
+                e.preventDefault();
+            });
+        });
+
+        // Enable select2
+        $(document).ready(function () {
+            $('.select2-length-single').select2({
+                theme: 'bootstrap4',
+            });
+        });
+    </script>
+}

@@ -1,0 +1,118 @@
+﻿<!-- Login - Split Page -->
+
+@model NES.Models.UserLoginView
+
+@{
+    Layout = null;
+}
+
+@Styles.Render("~/Login/css")
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Login - NES</title>
+</head>
+
+<body class="bg-white">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <!-- The image half -->
+            <div class="col-md-6 d-none d-md-flex" id="bg-image">
+                <!-- Page Header -->
+                <h6 class="col-12 text-white-50 text-center small">
+                    <img style="width: 8em;" src="data:image/png;base64,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" /><br />
+                    © Sektor za razvoj i informaciono-komunikacione tehnologije <br /> Odeljenje za projektovanje i razvoj
+                </h6>
+            </div>
+            <!-- The content half -->
+            <div class="col-md-6 bg-light">
+                <div class="login d-flex align-items-center py-5">
+                    <!-- Content-->
+                    <div class="container">
+                        <p class="col-12 fixed-top font-weight-light text-right mt-3"><span class="mr-5">Welcome back!</span></p>
+                        <div class="row">
+                            <div class="col-lg-10 col-xl-7 mx-auto">
+                                <h3 class="display-4 login-title text-nowrap">Prognosis 2020</h3>
+                                <p class="text-muted text-nowrap mb-4">Serbian labour market annual forecasts - NES</p>
+                                <span class="lead text-danger">@Html.DisplayFor(model => model.LoginErrorMsg)</span>
+                                @using (Html.BeginForm("Authorise", "Login", FormMethod.Post, new { role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <form>
+                                        <div class="form-label-group">
+                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @id = "userInput", @type = "text", @placeholder = "User Name", @autocomplete = "off", @autofocus = "autofocus" } })
+                                            <label for="userInput" class="text-black-50">User name</label>
+
+                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "small text-danger", @value = "" })
+                                        </div>
+
+                                        <div class="form-label-group">
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "passwordInput", @type = "password", @placeholder = "Password" } })
+                                            <label for="passwordInput" class="text-black-50">Password</label>
+
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "small text-danger", @value = "" })
+                                        </div>
+
+                                        <div class="form-row d-none">
+                                            @*@Html.CheckBoxFor(model => model.IsActivated, new { @checked = true, htmlAttributes = new { @id = "is-activated" } })
+                                                <label class="form-check-label text-black-50 ml-2" for="is-activated">Activated?</label>*@
+                                            @Html.CheckBoxFor(model => model.IsActivated, new { @checked = true })
+                                        </div>
+
+                                        <div class="text-right">
+                                            <a class="small text-black-50 font-weight-light text-decoration-none" href="mailto:nesadmin@nsz.go.rs?subject=NES password reset&body=&body=Change my Password, please.%0D%0DMy Username is: %0D" data-toggle="tooltip" title="Mail to Admin">Forgotten password?</a>
+                                        </div>
+                                        <button class="btn btn-primary btn-block mt-3 py-2" type="submit" data-toggle="tooltip" title="Login"><i class="mdi mdi-login-variant mdi-36px"></i></button>
+                                    </form>
+                                }
+                                <p class="text-center text-secondary small mt-3">© Dima 2020</p>
+                            </div>
+                        </div>
+                        <!-- small Page Footer -->
+                        <div class="col-12 d-lg-none d-md-none fixed-bottom text-center mb-1">
+                            <img style="width: 8em;" src="~/Images/logoapportal.png" />
+                            <h6 class="text-black-50 small">
+                                © Sektor za razvoj i informaciono-komunikacione tehnologije<br />Odeljenje za projektovanje i razvoj
+                            </h6>
+                        </div>
+                    </div><!-- End -->
+                </div>
+            </div><!-- End -->
+        </div>
+    </div>
+
+    @Scripts.Render("~/Login/js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+            // Cycle login images - https://stackoverflow.com/questions/19369426/random-background-image-on-refresh
+            var images = [
+                'laptop-1.jpg',
+                'lock-2.jpg',
+                'laptop-2.jpg',
+                'lock-3.jpg',
+                'laptop-4.jpg',
+                'lock-4.jpg',
+                'laptop-5.jpg',
+                'lock-7.jpg',
+                'laptop-8.jpg',
+                'lock-8.jpg',
+                'laptop-9.jpg',
+                'lock-9.jpg',
+                'labour-market-1.jpg',
+                'lock-10.jpg',
+                'labour-market-2.jpg',
+                'lock-11.jpg',
+                'lock-12.jpg',
+                'lock-13.jpg',
+                'lock-14.jpg',
+            ];
+            $('#bg-image').css({ 'background-image': 'url(/Images/' + images[Math.floor(Math.random() * images.length)] + ')' });
+        });
+    </script>
+</body>
+</html>
