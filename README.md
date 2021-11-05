@@ -12,14 +12,14 @@ Bootstrap 4.6 - https://getbootstrap.com/
 Customized Bootstrap Materia theme - https://bootstrap.build/themes
 
 SB Admin 2 - free admin theme (css extracted from theme bootstrap.css) - https://startbootstrap.com/theme/sb-admin-2
-	for:    
+	for:  
 		1. Side Menu  
 		2. Default Card Example, Basic Card Example, Dropdown Card Example, Collapsable Card Example  
 		3. Earnings (Monthly) Card Example, Earnings (Annual) Card Example, Tasks Card Example, Pending Requests Card Example  
 		4. Circle Buttons, Split Buttons with Icon  
 
 BOOTSTRAPIOUS - https://bootstrapious.com/
-		for:      
+		for:  
 			1. Bootstrap Tabs  
 			2. Bootstrap Accordion  
 			3. Bootstrap Custom quote  
@@ -32,39 +32,39 @@ Material Design Icons - https://materialdesignicons.com/
 			1. Aplication icons
 
 DataTables - https://datatables.net/
-		for:      
+		for:  
 			1. Display data from database
 
 Alertify - https://alertifyjs.com/
-		for:      
+		for:  
 			1. Alerts
 			2. Notifications
 
 Tooltipster - https://www.heteroclito.fr/modules/tooltipster/
-		for:      
+		for:  
 			1. Customized tooltips
 			2. Help tooltip
 
 NProgress - https://ricostacruz.com/nprogress/
-		for:      
+		for:  
 			1. Progress bar display
 
 Select2 - https://select2.org/
-		for:      
+		for:  
 			1. Select boxes (display select boxes uniformly on all browsers)
 
 Moment - https://momentjs.com/
-		for:      
+		for:  
 			1. Date formatting
 
 Ultimate Date / Time sorting - https://datatables.net/plug-ins/sorting/datetime-moment
-		for:      
+		for:  
 			1. Date sorting in Datatables
 			
 CSS CodeLab - https://www.csscodelab.com/css-vertical-left-right-timeline/			
-		for:      
+		for:  
 			1. Vertical Left-Right Timeline
 
 Floating Labels - https://github.com/exacti/floating-labels
-		for:      
+		for:  
    			1. Form input floating labels
