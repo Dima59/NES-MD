@@ -2,7 +2,7 @@
 
 CRUD application with C#, .NET, Entity Framework, Bootstrap, DataTables, JavaScript... 
 
-Database is on remote SQL Server. SQL for creating database is in ReadMe folder which also contains images of app pages.
+Database is on remote SQL Server. SQL for creating database is in ReadMe app folder which also contains images of app pages.
 
 Used tools & scripts are all free.
 
