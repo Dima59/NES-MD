@@ -1,5 +1,4 @@
-# NES-MD
-C# .NET User Administration App
+# C# .NET User Administration App
 
 CRUD application with C#, .NET, Entity Framework, Bootstrap, DataTables, JavaScript... 
 
