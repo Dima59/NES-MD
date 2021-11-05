@@ -354,6 +354,32 @@
       <DependentUpon>UserModel.edmx</DependentUpon>
       <LastGenOutput>UserModel.cs</LastGenOutput>
     </Content>
+    <Content Include="ReadMe\Database EF.jpg" />
+    <Content Include="ReadMe\Images\Add Create Date.jpg" />
+    <Content Include="ReadMe\Images\Add User Org Unit.jpg" />
+    <Content Include="ReadMe\Images\Cancel Edit.jpg" />
+    <Content Include="ReadMe\Images\Dasboard - Reduced Sidebar.jpg" />
+    <Content Include="ReadMe\Images\Dashboard - 1.jpg" />
+    <Content Include="ReadMe\Images\Dashboard - 2.jpg" />
+    <Content Include="ReadMe\Images\Dashboard - 3.jpg" />
+    <Content Include="ReadMe\Images\Dashboard - 4.jpg" />
+    <Content Include="ReadMe\Images\Dashboard - 5.jpg" />
+    <Content Include="ReadMe\Images\Delete User.jpg" />
+    <Content Include="ReadMe\Images\Edit Role.jpg" />
+    <Content Include="ReadMe\Images\Edit User.jpg" />
+    <Content Include="ReadMe\Images\Export.jpg" />
+    <Content Include="ReadMe\Images\Login Error.jpg" />
+    <Content Include="ReadMe\Images\Login.jpg" />
+    <Content Include="ReadMe\Images\New Role.jpg" />
+    <Content Include="ReadMe\Images\New User.jpg" />
+    <Content Include="ReadMe\Images\Org Unit - Department Administration.jpg" />
+    <Content Include="ReadMe\Images\Select Columns View.jpg" />
+    <Content Include="ReadMe\Images\Select Visible Columns.jpg" />
+    <Content Include="ReadMe\Images\Shortcuts Help.jpg" />
+    <Content Include="ReadMe\Images\Show Columns Filter.jpg" />
+    <Content Include="ReadMe\Images\User Details.jpg" />
+    <Content Include="ReadMe\Images\Users Administration.jpg" />
+    <Content Include="ReadMe\NESDB Export.sql" />
     <Content Include="Scripts\alertify.js" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
