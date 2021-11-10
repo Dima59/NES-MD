@@ -2,7 +2,7 @@
 
 CRUD application with C#, .NET, Entity Framework, Bootstrap, DataTables, JavaScript... 
 
-Database is on remote SQL Server. SQL for creating database is in ReadMe app folder which also contains images of app pages.
+Database is on remote SQL Server. SQL for creating database is in ReadMe app folder which also contains all images of app pages.
 
 Used tools & scripts are all free.
 
@@ -57,3 +57,10 @@ CSS CodeLab - https://www.csscodelab.com/css-vertical-left-right-timeline/ for:
 
 Floating Labels - https://github.com/exacti/floating-labels for:  
 1. Form input floating labels
+
+![Login Page](/ReadMe/Images/Login.jpg)
+![Users Administration Page](/ReadMe/Images/UsersAdministration.jpg)
+![New User](/ReadMe/Images/NewUser.jpg)
+![Edit User](/ReadMe/Images/EditUser.jpg)
+![Delete User](/ReadMe/Images/DeleteUser.jpg)
+![User Details](/ReadMe/Images/UserDetails.jpg)
