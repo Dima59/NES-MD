@@ -542,10 +542,10 @@
             dataTable.search(' ');
             location.reload(true);
             dataTable.draw();
-            $('.search-focus').focus();
+            //$('.search-focus').focus();
         };
 
-        // Table searsh reset
+        // Table search reset
         function ResetSearch() {
             dataTable.search(' ');
             dataTable.draw();
@@ -708,6 +708,7 @@
             if (role == "Administrator") {
                 alertify.error(`"${role}" can't be deleted!`);
                 alertify.message(`"${name}" deletion canceled!`);
+                dataTable.ajax.reload();
             }
             else {
                 alertify.confirm().set({
