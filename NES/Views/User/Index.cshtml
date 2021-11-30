@@ -563,7 +563,7 @@
                     if (textStatus != "error") {
                         $(userModal).modal("show");
                         $('#UserName').prop("readonly", true);
-                        $('#userTitle').text("Edit user \"" + name + "\"");
+                        $('#userTitle').text(`Edit user "${name}"`);
                         $('#btnUpdate').show();
                         $('#btnAdd').hide();
 
@@ -661,7 +661,7 @@
                 }
             });
             if (name?.trim().length > 0) {
-                var headerText = "Cancel\xa0edit user \"" + name + "\"";
+                var headerText = `Cancel\xa0edit user "${name}"`;
                 var bodyText = "Do You really want to discard changes and lost entered data?";
             } else {
                 var headerText = "Cancel Add New User";
@@ -694,7 +694,7 @@
                     $('#userDetailsModalBody').html(response);
                     $('#userDetailsModal').modal("show");
                     //$('.modal-backdrop').removeClass("modal-backdrop");
-                    $('#userDetailsTitle').text("\"" + name + "\" Details");
+                    $('#userDetailsTitle').text(`"${name}" Details`);
                 },
                 error: function () {
                     NProgress.done();
@@ -706,8 +706,8 @@
         // Delete User Alert Form
         function DeleteUser(id, name, role) {
             if (role == "Administrator") {
-                alertify.error("\"" + role + "\" can't be deleted!");
-                alertify.message("\"" + name + "\" deletion canceled!");
+                alertify.error(`"${role}" can't be deleted!`);
+                alertify.message(`"${name}" deletion canceled!`);
             }
             else {
                 alertify.confirm().set({
@@ -721,7 +721,7 @@
                     }
                 });
                 alertify.confirm(
-                    "Delete \"" + name + "\"?",
+                    `Delete "${name}"?`,
                     "Are Yoy sure to delete this user?",
                     function () {
                         NProgress.start();
@@ -734,7 +734,7 @@
                                 {
                                     NProgress.done();
                                     dataTable.ajax.reload();
-                                    alertify.success("\"" + name + "\" deleted successfuly!");
+                                    alertify.success(`"${name}" deleted successfuly!`);
                                 }
                             },
                             error: function () {
@@ -745,7 +745,8 @@
                     },
                     function () {
                         dataTable.rows('.selected').deselect();
-                        alertify.message("\"" + name + "\" deletion canceled!");
+                        //alertify.message("\"" + name + "\" deletion canceled!");
+                        alertify.message(`"${name}" deletion canceled!`);
                     }
                 );
             }
@@ -780,7 +781,7 @@
                         //$("#DepartmentID").empty();
                         //$("#DepartmentID").append("<option value='0'>Select Department</option>");
                         $.each(data, function (index, optiondata) {
-                            $("#DepartmentID").append("<option value='" + optiondata.DepartmentID + "'>" + optiondata.DepartmentName + "</option>");
+                            $("#DepartmentID").append(`<option value='${optiondata.DepartmentID}'>${optiondata.DepartmentName}</option>`);
                         });
                     },
                     error: function () {
@@ -819,7 +820,7 @@
                         //$("#PositionID").empty();
                         //$("#PositionID").append("<option value='0'>Select Position</option>");
                         $.each(data, function (index, optiondata) {
-                            $("#PositionID").append("<option value='" + optiondata.PositionID + "'>" + optiondata.PositionName + "</option>");
+                            $("#PositionID").append(`<option value='${optiondata.PositionID}'>${optiondata.PositionName}</option>`);
                         });
                     },
                     error: function () {
